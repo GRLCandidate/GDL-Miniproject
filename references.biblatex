@@ -64,6 +64,14 @@
   file = {/home/olaf/Zotero/storage/MUHD29X2/Bahdanau et al. - 2016 - Neural Machine Translation by Jointly Learning to .pdf;/home/olaf/Zotero/storage/EYAIIHD7/1409.html}
 }
 
+@inproceedings{barberoSheafAttentionNetworks2022,
+  title = {Sheaf Attention Networks},
+  booktitle = {{{NeurIPS}} 2022 {{Workshop}} on {{Symmetry}} and {{Geometry}} in {{Neural Representations}}},
+  author = {Barbero, Federico and Bodnar, Cristian and family=Ocáriz Borde, given=Haitz Sáez, prefix=de, useprefix=true and Lio, Pietro},
+  date = {2022},
+  file = {/home/olaf/Zotero/storage/M3SBMEIT/Barbero et al. - 2022 - Sheaf attention networks.pdf;/home/olaf/Zotero/storage/FHCF9HQ3/forum.html}
+}
+
 @inproceedings{barceloLogicalExpressivenessGraph2020,
   title = {The {{Logical Expressiveness}} of {{Graph Neural Networks}}},
   author = {Barceló, Pablo and Kostylev, Egor V. and Monet, Mikael and Pérez, Jorge and Reutter, Juan and Silva, Juan Pablo},
@@ -258,6 +266,15 @@
   file = {/home/olaf/Zotero/storage/9UIMNV29/Brown et al. - 2020 - Language Models are Few-Shot Learners.pdf;/home/olaf/Zotero/storage/FIE5IYX2/2005.html}
 }
 
+@unpublished{byiringiroRobustGraphRepresentation2022,
+  title = {Robust {{Graph Representation Learning}} via {{Predictive Coding}}},
+  author = {Byiringiro, Billy and Salvatori, Tommaso and Lukasiewicz, Thomas},
+  date = {2022},
+  eprint = {2212.04656},
+  eprinttype = {arxiv},
+  file = {/home/olaf/Zotero/storage/BSTUJKAX/Byiringiro et al. - 2022 - Robust Graph Representation Learning via Predictiv.pdf;/home/olaf/Zotero/storage/8KPNJIKJ/2212.html}
+}
+
 @online{caiNoteOverSmoothingGraph2020,
   title = {A {{Note}} on {{Over-Smoothing}} for {{Graph Neural Networks}}},
   author = {Cai, Chen and Wang, Yusu},
@@ -351,6 +368,15 @@
   langid = {english},
   keywords = {Atomistic models,Computational methods,Materials science},
   file = {/home/olaf/Zotero/storage/QLEC9W8Y/Chen et Ong - 2022 - A universal graph deep learning interatomic potent.pdf}
+}
+
+@unpublished{choiSignedMessageEssential2023,
+  title = {Is {{Signed Message Essential}} for {{Graph Neural Networks}}?},
+  author = {Choi, Yoonhyuk and Choi, Jiho and Ko, Taewook and Kim, Chong-Kwon},
+  date = {2023},
+  eprint = {2301.08918},
+  eprinttype = {arxiv},
+  file = {/home/olaf/Zotero/storage/5G5UY2H2/Choi et al. - 2023 - Is Signed Message Essential for Graph Neural Netwo.pdf;/home/olaf/Zotero/storage/PAC4D9AI/2301.html}
 }
 
 @online{cicek3DUNetLearning2016,
@@ -509,6 +535,23 @@
   file = {/home/olaf/Zotero/storage/UDRTKMGQ/Di Giovanni et al. - 2022 - Graph Neural Networks as Gradient Flows understan.pdf;/home/olaf/Zotero/storage/ZSTWBBH3/2206.html}
 }
 
+@online{digiovanniGraphNeuralNetworks2022a,
+  title = {Graph {{Neural Networks}} as {{Gradient Flows}}: Understanding Graph Convolutions via Energy},
+  shorttitle = {Graph {{Neural Networks}} as {{Gradient Flows}}},
+  author = {Di Giovanni, Francesco and Rowbottom, James and Chamberlain, Benjamin P. and Markovich, Thomas and Bronstein, Michael M.},
+  date = {2022-10-08},
+  number = {arXiv:2206.10991},
+  eprint = {arXiv:2206.10991},
+  eprinttype = {arxiv},
+  doi = {10.48550/arXiv.2206.10991},
+  url = {http://arxiv.org/abs/2206.10991},
+  urldate = {2023-03-22},
+  abstract = {Gradient flows are differential equations that minimize an energy functional and constitute the main descriptors of physical systems. We apply this formalism to Graph Neural Networks (GNNs) to develop new frameworks for learning on graphs as well as provide a better theoretical understanding of existing ones. We derive GNNs as a gradient flow equation of a parametric energy that provides a physics-inspired interpretation of GNNs as learning particle dynamics in the feature space. In particular, we show that in graph convolutional models (GCN), the positive/negative eigenvalues of the channel mixing matrix correspond to attractive/repulsive forces between adjacent features. We rigorously prove how the channel-mixing can learn to steer the dynamics towards low or high frequencies, which allows to deal with heterophilic graphs. We show that the same class of energies is decreasing along a larger family of GNNs; albeit not gradient flows, they retain their inductive bias. We experimentally evaluate an instance of the gradient flow framework that is principled, more efficient than GCN, and achieves competitive performance on graph datasets of varying homophily often outperforming recent baselines specifically designed to target heterophily.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
+  file = {/home/olaf/Zotero/storage/I8FYMRYK/Di Giovanni et al. - 2022 - Graph Neural Networks as Gradient Flows understan.pdf;/home/olaf/Zotero/storage/2KUWDY88/2206.html}
+}
+
 @online{dwivediLongRangeGraph2022,
   title = {Long {{Range Graph Benchmark}}},
   author = {Dwivedi, Vijay Prakash and Rampášek, Ladislav and Galkin, Mikhail and Parviz, Ali and Wolf, Guy and Luu, Anh Tuan and Beaini, Dominique},
@@ -589,6 +632,38 @@
   pubstate = {preprint},
   keywords = {Computer Science - Machine Learning},
   file = {/home/olaf/Zotero/storage/83RMZFLF/Frasca et al. - 2022 - Understanding and Extending Subgraph GNNs by Rethi.pdf;/home/olaf/Zotero/storage/8DQWUXJZ/2206.html}
+}
+
+@online{gaoDoublePermutationEquivariance2023,
+  title = {Double {{Permutation Equivariance}} for {{Knowledge Graph Completion}}},
+  author = {Gao, Jianfei and Zhou, Yangze and Ribeiro, Bruno},
+  date = {2023-02-02},
+  number = {arXiv:2302.01313},
+  eprint = {arXiv:2302.01313},
+  eprinttype = {arxiv},
+  doi = {10.48550/arXiv.2302.01313},
+  url = {http://arxiv.org/abs/2302.01313},
+  urldate = {2023-03-22},
+  abstract = {This work provides a formalization of Knowledge Graphs (KGs) as a new class of graphs that we denote doubly exchangeable attributed graphs, where node and pairwise (joint 2-node) representations must be equivariant to permutations of both node ids and edge (\& node) attributes (relations \& node features). Double-permutation equivariant KG representations open a new research direction in KGs. We show that this equivariance imposes a structural representation of relations that allows neural networks to perform complex logical reasoning tasks in KGs. Finally, we introduce a general blueprint for such equivariant representations and test a simple GNN-based double-permutation equivariant neural architecture that achieve 100\% Hits@10 test accuracy in both the WN18RRv1 and NELL995v1 inductive KG completion tasks, and can accurately perform logical reasoning tasks that no existing methods can perform, to the best of our knowledge.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computation and Language,Computer Science - Machine Learning},
+  file = {/home/olaf/Zotero/storage/FSFENXGD/Gao et al. - 2023 - Double Permutation Equivariance for Knowledge Grap.pdf;/home/olaf/Zotero/storage/V9CKF9L2/2302.html}
+}
+
+@online{gaoGraphUNets2019,
+  title = {Graph {{U-Nets}}},
+  author = {Gao, Hongyang and Ji, Shuiwang},
+  date = {2019-05-11},
+  number = {arXiv:1905.05178},
+  eprint = {arXiv:1905.05178},
+  eprinttype = {arxiv},
+  doi = {10.48550/arXiv.1905.05178},
+  url = {http://arxiv.org/abs/1905.05178},
+  urldate = {2023-03-23},
+  abstract = {We consider the problem of representation learning for graph data. Convolutional neural networks can naturally operate on images, but have significant challenges in dealing with graph data. Given images are special cases of graphs with nodes lie on 2D lattices, graph embedding tasks have a natural correspondence with image pixel-wise prediction tasks such as segmentation. While encoder-decoder architectures like U-Nets have been successfully applied on many image pixel-wise prediction tasks, similar methods are lacking for graph data. This is due to the fact that pooling and up-sampling operations are not natural on graph data. To address these challenges, we propose novel graph pooling (gPool) and unpooling (gUnpool) operations in this work. The gPool layer adaptively selects some nodes to form a smaller graph based on their scalar projection values on a trainable projection vector. We further propose the gUnpool layer as the inverse operation of the gPool layer. The gUnpool layer restores the graph into its original structure using the position information of nodes selected in the corresponding gPool layer. Based on our proposed gPool and gUnpool layers, we develop an encoder-decoder model on graph, known as the graph U-Nets. Our experimental results on node classification and graph classification tasks demonstrate that our methods achieve consistently better performance than previous models.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
+  file = {/home/olaf/Zotero/storage/LE5JICT4/Gao et Ji - 2019 - Graph U-Nets.pdf;/home/olaf/Zotero/storage/8TKAVXYE/1905.html}
 }
 
 @online{godwinSimpleGNNRegularisation2022,
@@ -690,6 +765,15 @@
   urldate = {2022-12-09},
   isbn = {978-0-8218-5079-4 978-0-8218-7660-2},
   langid = {english}
+}
+
+@unpublished{hanGeneralizedEnergyGradient2022,
+  title = {Generalized Energy and Gradient Flow via Graph Framelets},
+  author = {Han, Andi and Shi, Dai and Shao, Zhiqi and Gao, Junbin},
+  date = {2022},
+  eprint = {2210.04124},
+  eprinttype = {arxiv},
+  file = {/home/olaf/Zotero/storage/DRGJ8QYK/Han et al. - 2022 - Generalized energy and gradient flow via graph fra.pdf;/home/olaf/Zotero/storage/XXA68KU9/2210.html}
 }
 
 @article{havaeiBrainTumorSegmentation2017,
@@ -1338,6 +1422,16 @@
   file = {/home/olaf/Zotero/storage/CCUASJ8T/Morris et al. - 2023 - Weisfeiler and Leman go Machine Learning The Stor.pdf;/home/olaf/Zotero/storage/DFSICFJJ/2112.html}
 }
 
+@unpublished{papachristouGLINKXScalableUnified2022,
+  title = {{{GLINKX}}: {{A Scalable Unified Framework For Homophilous}} and {{Heterophilous Graphs}}},
+  shorttitle = {{{GLINKX}}},
+  author = {Papachristou, Marios and Goel, Rishab and Portman, Frank and Miller, Matthew and Jin, Rong},
+  date = {2022},
+  eprint = {2211.00550},
+  eprinttype = {arxiv},
+  file = {/home/olaf/Zotero/storage/L844A2QC/Papachristou et al. - 2022 - GLINKX A Scalable Unified Framework For Homophilo.pdf;/home/olaf/Zotero/storage/CWRAYLVY/2211.html}
+}
+
 @inproceedings{pappTheoreticalComparisonGraph2022,
   title = {A {{Theoretical Comparison}} of {{Graph Neural Network Extensions}}},
   booktitle = {Proceedings of the 39th {{International Conference}} on {{Machine Learning}}},
@@ -1476,6 +1570,15 @@
   pubstate = {preprint},
   keywords = {Computer Science - Machine Learning,Computer Science - Networking and Internet Architecture,Computer Science - Social and Information Networks,Statistics - Machine Learning},
   file = {/home/olaf/Zotero/storage/MSLCUUQD/Rozemberczki et al. - 2021 - Multi-scale Attributed Node Embedding.pdf;/home/olaf/Zotero/storage/2GZW72VY/1909.html}
+}
+
+@unpublished{ruschGradientGatingDeep2022,
+  title = {Gradient {{Gating}} for {{Deep Multi-Rate Learning}} on {{Graphs}}},
+  author = {Rusch, T. Konstantin and Chamberlain, Benjamin P. and Mahoney, Michael W. and Bronstein, Michael M. and Mishra, Siddhartha},
+  date = {2022},
+  eprint = {2210.00513},
+  eprinttype = {arxiv},
+  file = {/home/olaf/Zotero/storage/UQ2RBCZZ/Rusch et al. - 2022 - Gradient Gating for Deep Multi-Rate Learning on Gr.pdf;/home/olaf/Zotero/storage/QVS62IDR/2210.html}
 }
 
 @online{rybinInvariantLayersGraphs2023,
@@ -1908,6 +2011,16 @@
   file = {/home/olaf/Zotero/storage/VT9VQJQ3/Yanardag et Vishwanathan - 2015 - Deep Graph Kernels.pdf}
 }
 
+@unpublished{yangGeometricKnowledgeDistillation2022,
+  title = {Geometric {{Knowledge Distillation}}: {{Topology Compression}} for {{Graph Neural Networks}}},
+  shorttitle = {Geometric {{Knowledge Distillation}}},
+  author = {Yang, Chenxiao and Wu, Qitian and Yan, Junchi},
+  date = {2022},
+  eprint = {2210.13014},
+  eprinttype = {arxiv},
+  file = {/home/olaf/Zotero/storage/FEU3668N/Yang et al. - 2022 - Geometric Knowledge Distillation Topology Compres.pdf;/home/olaf/Zotero/storage/DVBYMXFA/2210.html}
+}
+
 @online{yangSPAGANShortestPath2021,
   title = {{{SPAGAN}}: {{Shortest Path Graph Attention Network}}},
   shorttitle = {{{SPAGAN}}},
@@ -1991,6 +2104,22 @@
   file = {/home/olaf/Zotero/storage/MPNJJD4E/Zhang et al. - 2022 - Graph-level Neural Networks Current Progress and .pdf;/home/olaf/Zotero/storage/RFUCY8KJ/2205.html}
 }
 
+@online{zhangHierarchicalGraphPooling2019,
+  title = {Hierarchical {{Graph Pooling}} with {{Structure Learning}}},
+  author = {Zhang, Zhen and Bu, Jiajun and Ester, Martin and Zhang, Jianfeng and Yao, Chengwei and Yu, Zhi and Wang, Can},
+  date = {2019-12-25},
+  number = {arXiv:1911.05954},
+  eprint = {arXiv:1911.05954},
+  eprinttype = {arxiv},
+  doi = {10.48550/arXiv.1911.05954},
+  url = {http://arxiv.org/abs/1911.05954},
+  urldate = {2023-03-23},
+  abstract = {Graph Neural Networks (GNNs), which generalize deep neural networks to graph-structured data, have drawn considerable attention and achieved state-of-the-art performance in numerous graph related tasks. However, existing GNN models mainly focus on designing graph convolution operations. The graph pooling (or downsampling) operations, that play an important role in learning hierarchical representations, are usually overlooked. In this paper, we propose a novel graph pooling operator, called Hierarchical Graph Pooling with Structure Learning (HGP-SL), which can be integrated into various graph neural network architectures. HGP-SL incorporates graph pooling and structure learning into a unified module to generate hierarchical representations of graphs. More specifically, the graph pooling operation adaptively selects a subset of nodes to form an induced subgraph for the subsequent layers. To preserve the integrity of graph's topological information, we further introduce a structure learning mechanism to learn a refined graph structure for the pooled graph at each layer. By combining HGP-SL operator with graph neural networks, we perform graph level representation learning with focus on graph classification task. Experimental results on six widely used benchmarks demonstrate the effectiveness of our proposed model.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
+  file = {/home/olaf/Zotero/storage/KEIHL8ED/Zhang et al. - 2019 - Hierarchical Graph Pooling with Structure Learning.pdf;/home/olaf/Zotero/storage/VRVBT4DU/1911.html}
+}
+
 @article{zhangSurveyNeuralNetwork2021,
   title = {A {{Survey}} on {{Neural Network Interpretability}}},
   author = {Zhang, Yu and Tiňo, Peter and Leonardis, Aleš and Tang, Ke},
@@ -2039,6 +2168,41 @@
   pubstate = {preprint},
   keywords = {Computer Science - Machine Learning},
   file = {/home/olaf/Zotero/storage/HY88H3B9/Zhao et al. - 2022 - A Practical, Progressively-Expressive GNN.pdf;/home/olaf/Zotero/storage/424MGY28/2210.html}
+}
+
+@online{zhengHowFrameletsEnhance2021,
+  title = {How {{Framelets Enhance Graph Neural Networks}}},
+  author = {Zheng, Xuebin and Zhou, Bingxin and Gao, Junbin and Wang, Yu Guang and Lio, Pietro and Li, Ming and Montufar, Guido},
+  date = {2021-06-20},
+  number = {arXiv:2102.06986},
+  eprint = {arXiv:2102.06986},
+  eprinttype = {arxiv},
+  doi = {10.48550/arXiv.2102.06986},
+  url = {http://arxiv.org/abs/2102.06986},
+  urldate = {2023-03-23},
+  abstract = {This paper presents a new approach for assembling graph neural networks based on framelet transforms. The latter provides a multi-scale representation for graph-structured data. We decompose an input graph into low-pass and high-pass frequencies coefficients for network training, which then defines a framelet-based graph convolution. The framelet decomposition naturally induces a graph pooling strategy by aggregating the graph feature into low-pass and high-pass spectra, which considers both the feature values and geometry of the graph data and conserves the total information. The graph neural networks with the proposed framelet convolution and pooling achieve state-of-the-art performance in many node and graph prediction tasks. Moreover, we propose shrinkage as a new activation for the framelet convolution, which thresholds high-frequency information at different scales. Compared to ReLU, shrinkage activation improves model performance on denoising and signal compression: noises in both node and structure can be significantly reduced by accurately cutting off the high-pass coefficients from framelet decomposition, and the signal can be compressed to less than half its original size with well-preserved prediction performance.},
+  pubstate = {preprint},
+  keywords = {68T07; 05C85; 42C40,Computer Science - Artificial Intelligence,Computer Science - Machine Learning,I.2.4,I.2.6,Mathematics - Numerical Analysis},
+  file = {/home/olaf/Zotero/storage/XSJDLSUJ/Zheng et al. - 2021 - How Framelets Enhance Graph Neural Networks.pdf;/home/olaf/Zotero/storage/VDJAJWRW/2102.html}
+}
+
+@article{zhouGraphNeuralNetworks2020,
+  title = {Graph Neural Networks: {{A}} Review of Methods and Applications},
+  shorttitle = {Graph Neural Networks},
+  author = {Zhou, Jie and Cui, Ganqu and Hu, Shengding and Zhang, Zhengyan and Yang, Cheng and Liu, Zhiyuan and Wang, Lifeng and Li, Changcheng and Sun, Maosong},
+  date = {2020-01-01},
+  journaltitle = {AI Open},
+  shortjournal = {AI Open},
+  volume = {1},
+  pages = {57--81},
+  issn = {2666-6510},
+  doi = {10.1016/j.aiopen.2021.01.001},
+  url = {https://www.sciencedirect.com/science/article/pii/S2666651021000012},
+  urldate = {2023-03-23},
+  abstract = {Lots of learning tasks require dealing with graph data which contains rich relation information among elements. Modeling physics systems, learning molecular fingerprints, predicting protein interface, and classifying diseases demand a model to learn from graph inputs. In other domains such as learning from non-structural data like texts and images, reasoning on extracted structures (like the dependency trees of sentences and the scene graphs of images) is an important research topic which also needs graph reasoning models. Graph neural networks (GNNs) are neural models that capture the dependence of graphs via message passing between the nodes of graphs. In recent years, variants of GNNs such as graph convolutional network (GCN), graph attention network (GAT), graph recurrent network (GRN) have demonstrated ground-breaking performances on many deep learning tasks. In this survey, we propose a general design pipeline for GNN models and discuss the variants of each component, systematically categorize the applications, and propose four open problems for future research.},
+  langid = {english},
+  keywords = {Deep learning,Graph neural network},
+  file = {/home/olaf/Zotero/storage/QS7Y486D/Zhou et al. - 2020 - Graph neural networks A review of methods and app.pdf;/home/olaf/Zotero/storage/BVVTY4FC/S2666651021000012.html}
 }
 
 @article{zhouReviewDeepLearning2019,

@@ -1,0 +1,77 @@
+training with params   0/ 25 ( 0.0%): {'T': 1, 'step_size': 2}
+strarting iteration    9
+average acc: 56.7800±0.8171
+training with params   1/ 25 ( 4.0%): {'T': 1, 'step_size': 1}
+strarting iteration    9
+average acc: 71.8600±1.377
+training with params   2/ 25 ( 8.0%): {'T': 1, 'step_size': 0.5}
+strarting iteration    9
+average acc: 73.4200±0.9569
+training with params   3/ 25 (12.0%): {'T': 1, 'step_size': 0.25}
+strarting iteration    9
+average acc: 74.0400±0.8476
+training with params   4/ 25 (16.0%): {'T': 1, 'step_size': 0.125}
+strarting iteration    9
+average acc: 73.7800±1.393
+training with params   5/ 25 (20.0%): {'T': 2, 'step_size': 2}
+strarting iteration    9
+average acc: 73.8600±1.249
+training with params   6/ 25 (24.0%): {'T': 2, 'step_size': 1}
+strarting iteration    9
+average acc: 75.1400±1.117
+training with params   7/ 25 (28.0%): {'T': 2, 'step_size': 0.5}
+strarting iteration    9
+average acc: 75.9800±0.7972
+training with params   8/ 25 (32.0%): {'T': 2, 'step_size': 0.25}
+strarting iteration    9
+average acc: 76.1800±0.8022
+training with params   9/ 25 (36.0%): {'T': 2, 'step_size': 0.125}
+strarting iteration    9
+average acc: 76.0400±0.799
+training with params  10/ 25 (40.0%): {'T': 3, 'step_size': 2}
+strarting iteration    9
+average acc: 73.4400±0.794
+training with params  11/ 25 (44.0%): {'T': 3, 'step_size': 1}
+strarting iteration    9
+average acc: 75.5800±1.108
+training with params  12/ 25 (48.0%): {'T': 3, 'step_size': 0.5}
+strarting iteration    9
+average acc: 75.8800±1.028
+training with params  13/ 25 (52.0%): {'T': 3, 'step_size': 0.25}
+strarting iteration    9
+average acc: 76.2800±1.174
+training with params  14/ 25 (56.0%): {'T': 3, 'step_size': 0.125}
+strarting iteration    9
+average acc: 75.9600±1.439
+training with params  15/ 25 (60.0%): {'T': 4, 'step_size': 2}
+strarting iteration    9
+average acc: 75.7200±1.284
+training with params  16/ 25 (64.0%): {'T': 4, 'step_size': 1}
+strarting iteration    9
+average acc: 75.3600±0.88
+training with params  17/ 25 (68.0%): {'T': 4, 'step_size': 0.5}
+strarting iteration    9
+average acc: 75.7800±1.045
+training with params  18/ 25 (72.0%): {'T': 4, 'step_size': 0.25}
+strarting iteration    9
+average acc: 76.4200±0.9271
+training with params  19/ 25 (76.0%): {'T': 4, 'step_size': 0.125}
+strarting iteration    9
+average acc: 75.6800±0.8207
+training with params  20/ 25 (80.0%): {'T': 5, 'step_size': 2}
+strarting iteration    9
+average acc: 74.3000±1.201
+training with params  21/ 25 (84.0%): {'T': 5, 'step_size': 1}
+strarting iteration    9
+average acc: 76.0400±0.9541
+training with params  22/ 25 (88.0%): {'T': 5, 'step_size': 0.5}
+strarting iteration    9
+average acc: 76.1800±1.191
+training with params  23/ 25 (92.0%): {'T': 5, 'step_size': 0.25}
+strarting iteration    9
+average acc: 75.7400±1.299
+training with params  24/ 25 (96.0%): {'T': 5, 'step_size': 0.125}
+strarting iteration    9
+average acc: 75.8200±1.325
+best parameter choice was {'T': 4, 'step_size': 0.25}, achieving avg val acc=76.4200±0.9271
+
