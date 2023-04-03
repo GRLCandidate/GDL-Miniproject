@@ -17,7 +17,8 @@ def dirichlet_energy(X, adj_norm):
 def sym_norm_adj(A):
     """ Create the symmetric normalised adjacency from the dense adj matrix A"""
     # This should return a sparse adjacency matrix. (torch sparse coo tensor format)
-    A_tilde = A + torch.eye(A.shape[0])
+    #A_tilde = A + torch.eye(A.shape[0])
+    A_tilde = A
     D_tilde = torch.diag(A_tilde.sum(dim=0))
     D_tilde_inv_sqrt = D_tilde.pow(-1 / 2)
     D_tilde_inv_sqrt[torch.isinf(D_tilde_inv_sqrt)] = 0.0
@@ -36,24 +37,31 @@ class GRAFFLayer(nn.Module):
         A (torch.Tensor): 2-D adjacency matrix
     """
 
-    def __init__(self, input_dim, output_dim, A, step_size, use_W=True, nonlinear=False):
+    def __init__(self, input_dim, output_dim, A, step_size):
         super(GRAFFLayer, self).__init__()
         self.input_dim = input_dim
         self.output_dim = output_dim
-        self.use_W = use_W
-        self.nonlinear = nonlinear
         self.A = A
         self.step_size = step_size
-        # self.adj_norm = sym_norm_adj(A)
-        self.adj_norm = A + torch.eye(A.shape[0])
-        self.linear = nn.Linear(input_dim, output_dim, bias=False)
 
+        self.adj_norm = sym_norm_adj(A)
+
+        self.Omega = nn.parameter.Parameter(torch.empty((input_dim,)))
         self.W = nn.parameter.Parameter(torch.empty((input_dim, input_dim)))
-        nn.init.kaiming_uniform_(self.W, a=math.sqrt(5))
+        self.W_tilde = nn.parameter.Parameter(torch.empty((input_dim, input_dim)))
 
-    def forward(self, x):
+        nn.init.ones_(self.Omega)
+        nn.init.kaiming_uniform_(self.W, a=math.sqrt(5))
+        nn.init.kaiming_uniform_(self.W_tilde, a=math.sqrt(5))
+
+    def forward(self, x, x0):
         # return x + self.step_size * self.adj_norm @ x @ (self.W + self.W.T)
-        return x + self.step_size * self.adj_norm @ x @ self.W
+        residual = x * self.Omega
+        convo = self.adj_norm @ x @ (self.W + self.W.T)
+        initial = x0 @ self.W_tilde
+
+        # print(f'x: {x.shape} x0: {x0.shape} residual: {residual.shape} convo: {convo.shape} initial: {initial.shape}')
+        return x + self.step_size * (-residual + convo - initial)
 
 
 class GNN(nn.Module):
@@ -80,13 +88,9 @@ class GNN(nn.Module):
             nn.Linear(input_dim, hidden_dim),
             nn.Dropout(0.53),
         )
-        self.conv = nn.Sequential(
-            GRAFFLayer(hidden_dim, hidden_dim, A, step_size),
-        )
+        self.conv = GRAFFLayer(hidden_dim, hidden_dim, A, step_size)
         self.decoder = nn.Sequential(
-            nn.Linear(hidden_dim, hidden_dim),
-            # nn.LeakyReLU(),
-            # nn.Linear(hidden_dim, output_dim),
+            nn.Linear(hidden_dim, output_dim),
             nn.Dropout(0.34),
         )
 
@@ -94,11 +98,12 @@ class GNN(nn.Module):
 
     def forward(self, x):
         self.evolution = []
-        x = self.encoder(x)
+        x0 = self.encoder(x)
+        x = x0
 
         for _ in range(self.layers):
             self.evolution.append(x)
-            x = self.conv(x)
+            x = self.conv(x, x0)
 
         self.evolution.append(x)
         x = self.decoder(x)

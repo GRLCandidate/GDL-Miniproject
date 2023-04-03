@@ -112,10 +112,10 @@ def grid_search(iterations, dataset, param_grid, **shared_kwargs):
 def main():
     dataset = data.get_data()
     param_grid = {
-        # "T": [1, 2, 3, 4, 5],
-        # "step_size": [2, 1, 0.5, 0.25, 0.125],
-        "T": [4],
-        "step_size": [0.25],
+        "T": [1, 2, 3, 4, 5],
+        "step_size": [2, 1, 0.5, 0.25, 0.125],
+        # "T": [3],
+        # step_size": [0.25],
     }
     grid_search(10, dataset, param_grid, num_epochs=100, lr=0.0026, hidden_dim=64)
     # metrics = train_with_params(1, dataset, 64, 3, 0.25, 100, 0.0026)
