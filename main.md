@@ -16,6 +16,6 @@ We have GNNs as gradient flows -- fuck knows what that's all about[@digiovanniGr
 
 # Approach
 
-1. For a _suitable_ dataset, do a grid search to find the best combination of T and $\tau$.
-2. See if that can be improved upon using an adaptive step size.
+1. Synthetic dataset with logical formulae, which in principle a GCN should be able to solve, since I can expresse it in graded first order logic [@barceloLogicalExpressivenessGraph2020].
+2. Run GCN and GRAFF on experiments of increasing complexity, and wait until it all falls apart. Maybe try again with interleaved GRAFF and equivariant MLPL.
 3. Profit!
