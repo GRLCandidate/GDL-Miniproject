@@ -42,7 +42,7 @@ def mk_datapoint(n, colors, expression_length, out_degree=2, seed=None):
         y = adj_nodes & (color_idx == c)
         y = y.squeeze()
 
-    data.y = y
+    data.y = y.to(torch.long)
     return data
 
 
