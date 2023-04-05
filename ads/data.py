@@ -20,7 +20,17 @@ def get_data(num_datapoints, n, num_colors, expression_length, seed=None, **kwar
         gen.manual_seed(seed)
 
     train, val, test = random_split(datapoints, [0.6, 0.3, 0.1], gen)
-    return DataLoader(train), DataLoader(val), DataLoader(test)
+    dls = DataLoader(train), DataLoader(val), DataLoader(test)
+    for dl in dls:
+        dl.description = {
+            'num_datapoints': num_datapoints,
+            'n': n,
+            'num_colors': num_colors,
+            'expression_length': expression_length,
+            'seed': seed,
+            'kwargs': kwargs,
+        }
+    return dls
 
 
 def mk_datapoint(n, colors, expression_length, out_degree=2, seed=None):
@@ -69,7 +79,7 @@ def draw_graph(data, pos=None, seed=None):
 
 
 if __name__ == "__main__":
-    data, _, _ = get_data(100, 50, 6, 6, out_degree=3, seed=1045966)
+    data, _, _ = get_data(100, 40, 5, 5, out_degree=3, seed=1045966)
     for d in data:
         draw_graph(d, seed=1045966)
         plt.show()

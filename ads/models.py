@@ -2,6 +2,7 @@ import math
 import torch
 import torch.nn.functional as F
 import torch.nn as nn
+import torch_geometric.nn as gnn
 
 from torch_geometric.utils import to_dense_adj
 
@@ -94,18 +95,13 @@ class GNN(nn.Module):
             nn.Dropout(0.34),
         )
 
-        self.evolution = []
-
     def forward(self, x):
-        self.evolution = []
         x0 = self.encoder(x)
         x = x0
 
         for _ in range(self.layers):
-            self.evolution.append(x)
             x = self.conv(x, x0)
 
-        self.evolution.append(x)
         x = self.decoder(x)
 
         y_hat = F.log_softmax(x, dim=1)
@@ -121,4 +117,16 @@ class GNN(nn.Module):
             T=T,
             step_size=step_size,
             A=A
+        )
+
+
+class ClassicGNN(nn.Module):
+    @staticmethod
+    def for_dataset(dataset, hidden_dim, T, step_size):
+        return gnn.GCN(
+            in_channels=dataset.x.shape[-1],
+            hidden_channels=hidden_dim,
+            num_layers=T,
+            out_channels=dataset.y.shape[-1],
+            jk='last',
         )
