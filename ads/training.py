@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import uuid
 
-from ads.models import GNN
+from ads.models import DiceLoss
 
 
 def test(net, dataloader, loss_fn, epoch, accuracy_score, logger=print):
@@ -13,7 +13,7 @@ def test(net, dataloader, loss_fn, epoch, accuracy_score, logger=print):
     total_acc = 0
     with torch.no_grad():
         for datapoint in dataloader:
-            pred = net(datapoint.x)
+            pred = net(datapoint)
             total_loss += loss_fn(pred, datapoint.y).item()
             total_acc += accuracy_score(pred, datapoint.y)
 
@@ -27,6 +27,8 @@ def test(net, dataloader, loss_fn, epoch, accuracy_score, logger=print):
 
 
 def train(model, train_dl, val_dl, loss_fn, num_epochs, optim_gen, accuracy_score, logger=print):
+    if logger is None:
+        logger = lambda x: x
     optim = optim_gen(model.parameters())
     metrics = []
     max_acc = 0
@@ -56,7 +58,7 @@ def train_iteration(net, dataloader, optim, loss_fn, epoch, accuracy_score, logg
     total_loss = 0
     total_acc = 0
     for datapoint in dataloader:
-        pred = net(datapoint.x)
+        pred = net(datapoint)
 
         y = datapoint.y
         loss = loss_fn(pred, y)
@@ -77,21 +79,21 @@ def train_iteration(net, dataloader, optim, loss_fn, epoch, accuracy_score, logg
 
 def dice_acc(pred, true):
     eps = 1e-10
-    y_hat = pred.data.max(1)[1]
+    y_hat = torch.argmax(pred, dim=1)
     intersection = ((y_hat == 1) & (true == 1)).sum()
     union = (y_hat == 1).sum() + (true == 1).sum()
     return (2 * intersection + eps) / (union + eps)
 
 
-def train_with_params(iterations, train_dl, val_dl, model_cls, hidden_dim, T, step_size, num_epochs, lr):
+def train_with_params(iterations, train_dl, val_dl, model_cls, num_epochs, lr, **kwargs):
     all_metrics = []
     best_models = []
     best_results = []
     for i in range(iterations):
         print(f'starting iteration {i:4d}', end='\r')
-        model = model_cls.for_dataset(train_dl.__iter__().__next__(), hidden_dim=hidden_dim, T=T, step_size=step_size)
+        model = model_cls.for_dataset(train_dl.__iter__().__next__(), **kwargs)
         # model(dataset.x)
-        model_metrics, best_model, best_result = train(model, train_dl, val_dl, nn.CrossEntropyLoss(), num_epochs, lambda p: torch.optim.Adam(p, lr=lr), dice_acc, logger=lambda s: None)
+        model_metrics, best_model, best_result = train(model, train_dl, val_dl, DiceLoss(), num_epochs, lambda p: torch.optim.Adam(p, lr=lr), dice_acc, logger=None)
         all_metrics.append(model_metrics)
         best_models.append(best_model)
         best_results.append(best_result)

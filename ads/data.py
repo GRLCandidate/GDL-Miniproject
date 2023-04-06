@@ -8,6 +8,8 @@ from torch_geometric import utils as U
 from torch_geometric.loader import DataLoader
 from torch.utils.data import random_split
 
+from ads.models import sym_norm_adj
+
 
 def get_data(num_datapoints, n, num_colors, expression_length, seed=None, **kwargs):
     if seed is not None:
@@ -44,6 +46,7 @@ def mk_datapoint(n, colors, expression_length, out_degree=2, seed=None):
     color_idx = torch.randint(0, colors, (n,), generator=generator)
     color = torch.eye(colors)[color_idx]
     data.x = color
+    data.adj_norm = sym_norm_adj(U.to_dense_adj(data.edge_index)[0])
 
     y = torch.ones(n).int()
     adj_matrix = U.to_dense_adj(data.edge_index).int()

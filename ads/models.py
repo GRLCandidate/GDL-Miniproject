@@ -38,14 +38,11 @@ class GRAFFLayer(nn.Module):
         A (torch.Tensor): 2-D adjacency matrix
     """
 
-    def __init__(self, input_dim, output_dim, A, step_size):
+    def __init__(self, input_dim, output_dim, step_size):
         super(GRAFFLayer, self).__init__()
         self.input_dim = input_dim
         self.output_dim = output_dim
-        self.A = A
         self.step_size = step_size
-
-        self.adj_norm = sym_norm_adj(A)
 
         self.Omega = nn.parameter.Parameter(torch.empty((input_dim,)))
         self.W = nn.parameter.Parameter(torch.empty((input_dim, input_dim)))
@@ -55,78 +52,156 @@ class GRAFFLayer(nn.Module):
         nn.init.kaiming_uniform_(self.W, a=math.sqrt(5))
         nn.init.kaiming_uniform_(self.W_tilde, a=math.sqrt(5))
 
-    def forward(self, x, x0):
+    def forward(self, adj_norm, x, x0):
         # return x + self.step_size * self.adj_norm @ x @ (self.W + self.W.T)
         residual = x * self.Omega
-        convo = self.adj_norm @ x @ (self.W + self.W.T)
+        convo = adj_norm @ x @ (self.W + self.W.T)
         initial = x0 @ self.W_tilde
 
         # print(f'x: {x.shape} x0: {x0.shape} residual: {residual.shape} convo: {convo.shape} initial: {initial.shape}')
         return x + self.step_size * (-residual + convo - initial)
 
 
-class GNN(nn.Module):
+class GRAFFNetwork(nn.Module):
     """Simple encoder decoder GNN model using the various conv layers implemented by students
 
     Args:
         input_dim (int): Dimensionality of the input feature vectors
         hidden_dim (int): Dimensionality of the hidden feature vectors
         output_dim (int): Dimensionality of the output softmax distribution
-        time (int):
-        step_size (int):
-        A (torch.Tensor): 2-D adjacency matrix
-        conv_type (str):
+        T (int):
+        step_size (float):
     """
 
-    def __init__(self, input_dim, hidden_dim, output_dim, T, step_size, A):
-        super(GNN, self).__init__()
+    def __init__(self, input_dim, hidden_dim, output_dim, T, step_size, dropout):
+        super(GRAFFNetwork, self).__init__()
+        print(f'input_dim: {input_dim} hidden_dim={hidden_dim} output_dim={output_dim}')
         self.input_dim = input_dim
         self.output_dim = output_dim
         self.layers = int(T // step_size)
-        self.A = A
 
         self.encoder = nn.Sequential(
             nn.Linear(input_dim, hidden_dim),
-            nn.Dropout(0.53),
+            nn.Dropout(dropout),
         )
-        self.conv = GRAFFLayer(hidden_dim, hidden_dim, A, step_size)
+        self.conv = GRAFFLayer(hidden_dim, hidden_dim, step_size)
         self.decoder = nn.Sequential(
             nn.Linear(hidden_dim, output_dim),
-            nn.Dropout(0.34),
+            nn.Dropout(dropout),
+            nn.LeakyReLU(),
         )
 
-    def forward(self, x):
-        x0 = self.encoder(x)
+    def forward(self, data):
+        x0 = self.encoder(data.x)
         x = x0
 
         for _ in range(self.layers):
-            x = self.conv(x, x0)
+            x = self.conv(data.adj_norm, x, x0)
 
         x = self.decoder(x)
 
-        y_hat = F.log_softmax(x, dim=1)
+        y_hat = F.softmax(x, dim=1)
         return y_hat
 
     @staticmethod
-    def for_dataset(dataset, hidden_dim, T, step_size):
-        A = to_dense_adj(dataset.edge_index)[0]
-        return GNN(
+    def for_dataset(dataset, hidden_dim, T, step_size, dropout):
+        return GRAFFNetwork(
             input_dim=dataset.x.shape[-1],
             hidden_dim=hidden_dim,
-            output_dim=dataset.y.shape[-1],
+            output_dim=2,
             T=T,
             step_size=step_size,
-            A=A
+            dropout=dropout,
         )
+
+
+class LayeredGRAFFNetwork(nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim, num_layers, T, step_size, dropout, ev_trans_shared):
+        super(LayeredGRAFFNetwork, self).__init__()
+        self.num_convs_per_graff = int(T // step_size)
+        self.encoder = nn.Sequential(
+            nn.Linear(input_dim, hidden_dim),
+            nn.Dropout(dropout),
+        )
+
+        self.ev_trans_shared = ev_trans_shared
+        if ev_trans_shared:
+            self.ev_trans = nn.Sequential(
+                nn.Linear(hidden_dim, hidden_dim),
+                nn.ReLU(),
+            )
+        else:
+            self.ev_trans = []
+            for _ in range(num_layers):
+                self.ev_trans.append(nn.Sequential(
+                    nn.Linear(hidden_dim, hidden_dim),
+                    nn.ReLU(),
+                ))
+        convs = []
+        for _ in range(num_layers):
+            convs.append(GRAFFLayer(input_dim, output_dim, step_size))
+
+        self.convs = nn.Sequential(*convs)
+
+        self.decoder = nn.Sequential(
+            nn.Linear(hidden_dim, output_dim),
+            nn.Dropout(dropout)
+        )
+
+    def forward(self, data):
+        x0 = self.encoder(data.x)
+        x = x0
+
+        if self.ev_trans_shared:
+            for conv in self.convs:
+                for _ in range(self.num_convs_per_graff):
+                    x = conv(data.adj_norm, x, x0)
+                x = self.ev_trans(x)
+        else:
+            for conv, trans in zip(self.convs, self.ev_trans):
+                for _ in range(self.num_convs_per_graff):
+                    x = conv(data.adj_norm, x, x0)
+                x = trans(x)
+
+        x = self.decoder(x)
+        y = F.softmax(x, dim=1)
+        return y
+
+    @staticmethod
+    def for_dataset(dataset, **kwargs):
+        return LayeredGRAFFNetwork(
+            input_dim=dataset.x.shape[-1],
+            output_dim=2,
+            **kwargs
+        )
+
+
+class DiceLoss(nn.Module):
+    def __init__(self):
+        super(DiceLoss, self).__init__()
+
+    def forward(self, pred, target):
+        eps = 1e-10
+        intersection = torch.sum(torch.mul(pred[:, 1], target))
+        union = torch.sum(pred[:, 1] + target)
+        return 1 - 2 * (intersection + eps) / (union + eps)
 
 
 class ClassicGNN(nn.Module):
+    def __init__(self, base):
+        super(ClassicGNN, self).__init__()
+        self.base = base
+
+    def forward(self, data):
+        y = self.base(data.x, data.edge_index)
+        y_hat = F.softmax(y, dim=1)
+        return y_hat
+
     @staticmethod
-    def for_dataset(dataset, hidden_dim, T, step_size):
-        return gnn.GCN(
+    def for_dataset(dataset, hidden_dim, num_layers):
+        return ClassicGNN(gnn.GraphSAGE(
             in_channels=dataset.x.shape[-1],
             hidden_channels=hidden_dim,
-            num_layers=T,
-            out_channels=dataset.y.shape[-1],
-            jk='last',
-        )
+            num_layers=num_layers,
+            out_channels=2,
+        ))

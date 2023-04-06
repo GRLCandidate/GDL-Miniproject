@@ -28,6 +28,7 @@ class GridSearcher:
         metrics, models, results = train_with_params(self.iterations, self.train_dl, self.val_dl, self.model_cls, **kwargs, **self.shared_kwargs)
         ava, std = describe_val_acc(results)
         print(f'average acc: {ava:.4f}±{std:.4f}')
+        print()
         return {
             'acc': ava,
             'metrics': metrics,
@@ -73,5 +74,6 @@ def grid_search(iterations, train_dl, val_dl, model_cls, param_grid, comment=Non
         'std': argmax_std,
         'models': argmax_models,
         'metrics': argmax_metrics,
+        'all_results': results,
     }
     return ret

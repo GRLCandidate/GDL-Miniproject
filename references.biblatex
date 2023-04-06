@@ -14,6 +14,23 @@
   file = {/home/olaf/Zotero/storage/RK9FNG7J/Abboud et al. - 2022 - Shortest Path Networks for Graph Property Predicti.pdf;/home/olaf/Zotero/storage/D68RXJW9/2206.html}
 }
 
+@online{aflaloDeepCutUnsupervisedSegmentation2022,
+  title = {{{DeepCut}}: {{Unsupervised Segmentation}} Using {{Graph Neural Networks Clustering}}},
+  shorttitle = {{{DeepCut}}},
+  author = {Aflalo, Amit and Bagon, Shai and Kashti, Tamar and Eldar, Yonina},
+  date = {2022-12-18},
+  number = {arXiv:2212.05853},
+  eprint = {arXiv:2212.05853},
+  eprinttype = {arxiv},
+  doi = {10.48550/arXiv.2212.05853},
+  url = {http://arxiv.org/abs/2212.05853},
+  urldate = {2023-04-06},
+  abstract = {Image segmentation is a fundamental task in computer vision. Data annotation for training supervised methods can be labor-intensive, motivating unsupervised methods. Some existing approaches extract deep features from pre-trained networks and build a graph to apply classical clustering methods (e.g., \$k\$-means and normalized-cuts) as a post-processing stage. These techniques reduce the high-dimensional information encoded in the features to pair-wise scalar affinities. In this work, we replace classical clustering algorithms with a lightweight Graph Neural Network (GNN) trained to achieve the same clustering objective function. However, in contrast to existing approaches, we feed the GNN not only the pair-wise affinities between local image features but also the raw features themselves. Maintaining this connection between the raw feature and the clustering goal allows to perform part semantic segmentation implicitly, without requiring additional post-processing steps. We demonstrate how classical clustering objectives can be formulated as self-supervised loss functions for training our image segmentation GNN. Additionally, we use the Correlation-Clustering (CC) objective to perform clustering without defining the number of clusters (\$k\$-less clustering). We apply the proposed method for object localization, segmentation, and semantic part segmentation tasks, surpassing state-of-the-art performance on multiple benchmarks.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning},
+  file = {/home/olaf/Zotero/storage/35E9CTDB/Aflalo et al. - 2022 - DeepCut Unsupervised Segmentation using Graph Neu.pdf;/home/olaf/Zotero/storage/WHWE4B3B/2212.html}
+}
+
 @online{alonBottleneckGraphNeural2021,
   title = {On the {{Bottleneck}} of {{Graph Neural Networks}} and Its {{Practical Implications}}},
   author = {Alon, Uri and Yahav, Eran},
@@ -197,7 +214,6 @@
   author = {Bousquet, Olivier and Boucheron, Stéphane and Lugosi, Gábor},
   editor = {Bousquet, Olivier and family=Luxburg, given=Ulrike, prefix=von, useprefix=true and Rätsch, Gunnar},
   date = {2004},
-  series = {Lecture {{Notes}} in {{Computer Science}}},
   volume = {3176},
   pages = {169--207},
   publisher = {{Springer Berlin Heidelberg}},
@@ -349,6 +365,15 @@
   file = {/home/olaf/Zotero/storage/ZTGUEBDS/Chen et al. - 2019 - Measuring and Relieving the Over-smoothing Problem.pdf;/home/olaf/Zotero/storage/S7IHXFA2/1909.html}
 }
 
+@article{chenNeuralOrdinaryDifferential,
+  title = {Neural {{Ordinary Differential Equations}}},
+  author = {Chen, Tian Qi and Rubanova, Yulia and Bettencourt, Jesse and Duvenaud, David K},
+  date = {2018},
+  abstract = {We introduce a new family of deep neural network models. Instead of specifying a discrete sequence of hidden layers, we parameterize the derivative of the hidden state using a neural network. The output of the network is computed using a blackbox differential equation solver. These continuous-depth models have constant memory cost, adapt their evaluation strategy to each input, and can explicitly trade numerical precision for speed. We demonstrate these properties in continuous-depth residual networks and continuous-time latent variable models. We also construct continuous normalizing flows, a generative model that can train by maximum likelihood, without partitioning or ordering the data dimensions. For training, we show how to scalably backpropagate through any ODE solver, without access to its internal operations. This allows end-to-end training of ODEs within larger models.},
+  langid = {english},
+  file = {/home/olaf/Zotero/storage/ZNYUYPAQ/Chen et al. - Neural Ordinary Differential Equations.pdf}
+}
+
 @article{chenUniversalGraphDeep2022,
   title = {A Universal Graph Deep Learning Interatomic Potential for the Periodic Table},
   author = {Chen, Chi and Ong, Shyue Ping},
@@ -462,7 +487,8 @@
   doi = {10.1109/TMI.2006.880587},
   abstract = {Measures of overlap of labelled regions of images, such as the Dice and Tanimoto coefficients, have been extensively used to evaluate image registration and segmentation algorithms. Modern studies can include multiple labels defined on multiple images yet most evaluation schemes report one overlap per labelled region, simply averaged over multiple images. In this paper, common overlap measures are generalized to measure the total overlap of ensembles of labels defined on multiple test images and account for fractional labels using fuzzy set theory. This framework allows a single "figure-of-merit" to be reported which summarises the results of a complex experiment by image pair, by label or overall. A complementary measure of error, the overlap distance, is defined which captures the spatial extent of the nonoverlapping part and is related to the Hausdorff distance computed on grey level images. The generalized overlap measures are validated on synthetic images for which the overlap can be computed analytically and used as similarity measures in nonrigid registration of three-dimensional magnetic resonance imaging (MRI) brain images. Finally, a pragmatic segmentation ground truth is constructed by registering a magnetic resonance atlas brain to 20 individual scans, and used with the overlap measures to evaluate publicly available brain segmentation algorithms.},
   langid = {english},
-  keywords = {Algorithms,Brain,Humans,Image Enhancement,Image Interpretation; Computer-Assisted,Information Storage and Retrieval,Magnetic Resonance Imaging,Pattern Recognition; Automated,Quality Assurance; Health Care,Reproducibility of Results,Sensitivity and Specificity,Subtraction Technique}
+  keywords = {Algorithms,Brain,Humans,Image Enhancement,Image Interpretation; Computer-Assisted,Information Storage and Retrieval,Magnetic Resonance Imaging,Pattern Recognition; Automated,Quality Assurance; Health Care,Reproducibility of Results,Sensitivity and Specificity,Subtraction Technique},
+  file = {/home/olaf/Zotero/storage/T4TFEE6N/Crum et al. - 2006 - Generalized Overlap Measures for Evaluation and Va.pdf;/home/olaf/Zotero/storage/DB3GCGIF/stamp.html}
 }
 
 @article{debnathStructureactivityRelationshipMutagenic1991,
@@ -699,6 +725,22 @@
   file = {/home/olaf/Zotero/storage/9SBRMI92/Gokden - 2019 - CoulGAT An Experiment on Interpretability of Grap.pdf;/home/olaf/Zotero/storage/E4LYAS8R/1912.html}
 }
 
+@online{groheLogicGraphNeural2022,
+  title = {The {{Logic}} of {{Graph Neural Networks}}},
+  author = {Grohe, Martin},
+  date = {2022-01-09},
+  number = {arXiv:2104.14624},
+  eprint = {arXiv:2104.14624},
+  eprinttype = {arxiv},
+  doi = {10.48550/arXiv.2104.14624},
+  url = {http://arxiv.org/abs/2104.14624},
+  urldate = {2023-04-03},
+  abstract = {Graph neural networks (GNNs) are deep learning architectures for machine learning problems on graphs. It has recently been shown that the expressiveness of GNNs can be characterised precisely by the combinatorial Weisfeiler-Leman algorithms and by finite variable counting logics. The correspondence has even led to new, higher-order GNNs corresponding to the WL algorithm in higher dimensions. The purpose of this paper is to explain these descriptive characterisations of GNNs.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Logic in Computer Science,Computer Science - Machine Learning},
+  file = {/home/olaf/Zotero/storage/EKEVZ397/Grohe - 2022 - The Logic of Graph Neural Networks.pdf;/home/olaf/Zotero/storage/G4M4UGCM/2104.html}
+}
+
 @article{guerraExplainabilitySubgraphsenhancedGraph2023,
   title = {Explainability in Subgraphs-Enhanced {{Graph Neural Networks}}},
   author = {Guerra, Michele and Spinelli, Indro and Scardapane, Simone and Bianchi, Filippo Maria},
@@ -716,6 +758,21 @@
   abstract = {Recently, subgraphs-enhanced Graph Neural Networks (SGNNs) have been introduced to enhance the expressive power of Graph Neural Networks (GNNs), which was proved to be not higher than the 1-dimensional Weisfeiler-Leman isomorphism test. The new paradigm suggests using subgraphs extracted from the input graph to improve the model's expressiveness, but the additional complexity exacerbates an already challenging problem in GNNs: explaining their predictions. In this work, we adapt PGExplainer, one of the most recent explainers for GNNs, to SGNNs. The proposed explainer accounts for the contribution of all the different subgraphs and can produce a meaningful explanation that humans can interpret. The experiments that we performed both on real and synthetic datasets show that our framework is successful in explaining the decision process of an SGNN on graph classification tasks.},
   keywords = {Computer Science - Machine Learning},
   file = {/home/olaf/Zotero/storage/XASDKQDW/Guerra et al. - 2023 - Explainability in subgraphs-enhanced Graph Neural .pdf;/home/olaf/Zotero/storage/BT3U8Z6S/2209.html}
+}
+
+@inproceedings{guoClassImbalanceProblem2008,
+  title = {On the {{Class Imbalance Problem}}},
+  booktitle = {2008 {{Fourth International Conference}} on {{Natural Computation}}},
+  author = {Guo, Xinjian and Yin, Yilong and Dong, Cailing and Yang, Gongping and Zhou, Guangtong},
+  date = {2008-10},
+  volume = {4},
+  pages = {192--201},
+  issn = {2157-9563},
+  doi = {10.1109/ICNC.2008.871},
+  abstract = {The class imbalance problem has been recognized in many practical domains and a hot topic of machine learning in recent years. In such a problem, almost all the examples are labeled as one class, while far fewer examples are labeled as the other class, usually the more important class. In this case, standard machine learning algorithms tend to be overwhelmed by the majority class and ignore the minority class since traditional classifiers seeking an accurate performance over a full range of instances. This paper reviewed academic activities special for the class imbalance problem firstly. Then investigated various remedies in four different levels according to learning phases. Following surveying evaluation metrics and some other related factors, this paper showed some future directions at last.},
+  eventtitle = {2008 {{Fourth International Conference}} on {{Natural Computation}}},
+  keywords = {Biomedical monitoring,Computer science,Condition monitoring,Data mining,Diseases,Fault detection,Intrusion detection,Machine learning,Machine learning algorithms,Radar detection},
+  file = {/home/olaf/Zotero/storage/W2JVRNIB/4667275.html}
 }
 
 @online{guoLinklessLinkPrediction2022,
@@ -748,6 +805,22 @@
   pubstate = {preprint},
   keywords = {Computer Science - Machine Learning,Computer Science - Social and Information Networks,Statistics - Machine Learning},
   file = {/home/olaf/Zotero/storage/PD7NJXQV/Hamilton et al. - 2018 - Inductive Representation Learning on Large Graphs.pdf;/home/olaf/Zotero/storage/RJ5GQCY3/1706.html}
+}
+
+@online{hamiltonInductiveRepresentationLearning2018a,
+  title = {Inductive {{Representation Learning}} on {{Large Graphs}}},
+  author = {Hamilton, William L. and Ying, Rex and Leskovec, Jure},
+  date = {2018-09-10},
+  number = {arXiv:1706.02216},
+  eprint = {arXiv:1706.02216},
+  eprinttype = {arxiv},
+  doi = {10.48550/arXiv.1706.02216},
+  url = {http://arxiv.org/abs/1706.02216},
+  urldate = {2023-04-06},
+  abstract = {Low-dimensional embeddings of nodes in large graphs have proved extremely useful in a variety of prediction tasks, from content recommendation to identifying protein functions. However, most existing approaches require that all nodes in the graph are present during training of the embeddings; these previous approaches are inherently transductive and do not naturally generalize to unseen nodes. Here we present GraphSAGE, a general, inductive framework that leverages node feature information (e.g., text attributes) to efficiently generate node embeddings for previously unseen data. Instead of training individual embeddings for each node, we learn a function that generates embeddings by sampling and aggregating features from a node's local neighborhood. Our algorithm outperforms strong baselines on three inductive node-classification benchmarks: we classify the category of unseen nodes in evolving information graphs based on citation and Reddit post data, and we show that our algorithm generalizes to completely unseen graphs using a multi-graph dataset of protein-protein interactions.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Machine Learning,Computer Science - Social and Information Networks,Statistics - Machine Learning},
+  file = {/home/olaf/Zotero/storage/ZKJPJZR8/Hamilton et al. - 2018 - Inductive Representation Learning on Large Graphs.pdf;/home/olaf/Zotero/storage/CW5P69Y6/1706.html}
 }
 
 @incollection{hamiltonRicciFlowSurfaces1988,
@@ -943,6 +1016,46 @@
   file = {/home/olaf/Zotero/storage/C54ZUHD2/Jang et al. - 2014 - Medical image matching using variable randomized u.pdf;/home/olaf/Zotero/storage/3VLEN5DD/6914453.html}
 }
 
+@article{jhaPredictionProteinProtein2022,
+  title = {Prediction of Protein–Protein Interaction Using Graph Neural Networks},
+  author = {Jha, Kanchan and Saha, Sriparna and Singh, Hiteshi},
+  date = {2022-05-19},
+  journaltitle = {Scientific Reports},
+  shortjournal = {Sci Rep},
+  volume = {12},
+  number = {1},
+  pages = {8360},
+  publisher = {{Nature Publishing Group}},
+  issn = {2045-2322},
+  doi = {10.1038/s41598-022-12201-9},
+  url = {https://www.nature.com/articles/s41598-022-12201-9},
+  urldate = {2023-04-06},
+  abstract = {Proteins are the essential biological macromolecules required to perform nearly all biological processes, and cellular functions. Proteins rarely carry out their tasks in isolation but interact with other proteins (known as protein–protein interaction) present in their surroundings to complete biological activities. The knowledge of protein–protein interactions (PPIs) unravels the cellular behavior and its functionality. The computational methods automate the prediction of PPI and are less expensive than experimental methods in terms of resources and time. So far, most of the works on PPI have mainly focused on sequence information. Here, we use graph convolutional network (GCN) and graph attention network (GAT) to predict the interaction between proteins by utilizing protein’s structural information and sequence features. We build the graphs of proteins from their PDB files, which contain 3D coordinates of atoms. The protein graph represents the amino acid network, also known as residue contact network, where each node is a residue. Two nodes are connected if they have a pair of atoms (one from each node)~within the threshold distance. To extract the node/residue features, we use the protein language model. The input to the language model is the protein sequence, and the output is the feature vector for each amino acid of the underlying sequence. We validate the predictive capability of the proposed graph-based approach on two PPI datasets: Human and S. cerevisiae. Obtained results demonstrate the effectiveness of the proposed approach as it outperforms the previous leading methods. The source code for training and data to train the model are available at https://github.com/JhaKanchan15/PPI\_GNN.git.},
+  issue = {1},
+  langid = {english},
+  keywords = {Computational biology and bioinformatics,Computational models},
+  file = {/home/olaf/Zotero/storage/FB4Z9VP5/Jha et al. - 2022 - Prediction of protein–protein interaction using gr.pdf}
+}
+
+@article{johnsonSurveyDeepLearning2019,
+  title = {Survey on Deep Learning with Class Imbalance},
+  author = {Johnson, Justin M. and Khoshgoftaar, Taghi M.},
+  date = {2019-03-19},
+  journaltitle = {Journal of Big Data},
+  shortjournal = {J Big Data},
+  volume = {6},
+  number = {1},
+  pages = {27},
+  issn = {2196-1115},
+  doi = {10.1186/s40537-019-0192-5},
+  url = {https://doi.org/10.1186/s40537-019-0192-5},
+  urldate = {2023-03-24},
+  abstract = {The purpose of this study is to examine existing deep learning techniques for addressing class imbalanced data. Effective classification with imbalanced data is an important area of research, as high class imbalance is naturally inherent in many real-world applications, e.g., fraud detection and cancer detection. Moreover, highly imbalanced data poses added difficulty, as most learners will exhibit bias towards the majority class, and in extreme cases, may ignore the minority class altogether. Class imbalance has been studied thoroughly over the last two decades using traditional machine learning models, i.e. non-deep learning. Despite recent advances in deep learning, along with its increasing popularity, very little empirical work in the area of deep learning with class imbalance exists. Having achieved record-breaking performance results in several complex domains, investigating the use of deep neural networks for problems containing high levels of class imbalance is of great interest. Available studies regarding class imbalance and deep learning are surveyed in order to better understand the efficacy of deep learning when applied to class imbalanced data. This survey discusses the implementation details and experimental results for each study, and offers additional insight into their strengths and weaknesses. Several areas of focus include: data complexity, architectures tested, performance interpretation, ease of use, big data application, and generalization to other domains. We have found that research in this area is very limited, that most existing work focuses on computer vision tasks with convolutional neural networks, and that the effects of big data are rarely considered. Several traditional methods for class imbalance, e.g. data sampling and cost-sensitive learning, prove to be applicable in deep learning, while more advanced methods that exploit neural network feature learning abilities show promising results. The survey concludes with a discussion that highlights various gaps in deep learning from class imbalanced data for the purpose of guiding future research.},
+  langid = {english},
+  keywords = {Big data,Class imbalance,Deep learning,Deep neural networks},
+  file = {/home/olaf/Zotero/storage/CUZNBRNK/Johnson et Khoshgoftaar - 2019 - Survey on deep learning with class imbalance.pdf}
+}
+
 @article{kamnitsasEfficientMultiscale3D2017,
   title = {Efficient Multi-Scale {{3D CNN}} with Fully Connected {{CRF}} for Accurate Brain Lesion Segmentation},
   author = {Kamnitsas, Konstantinos and Ledig, Christian and Newcombe, Virginia F. J. and Simpson, Joanna P. and Kane, Andrew D. and Menon, David K. and Rueckert, Daniel and Glocker, Ben},
@@ -1097,6 +1210,25 @@
   pubstate = {preprint},
   keywords = {Computer Science - Machine Learning,Statistics - Machine Learning},
   file = {/home/olaf/Zotero/storage/AFWZIPDS/Kipf et Welling - 2017 - Semi-Supervised Classification with Graph Convolut.pdf;/home/olaf/Zotero/storage/IKNF5B5H/1609.html}
+}
+
+@article{leevySurveyAddressingHighclass2018,
+  title = {A Survey on Addressing High-Class Imbalance in Big Data},
+  author = {Leevy, Joffrey L. and Khoshgoftaar, Taghi M. and Bauder, Richard A. and Seliya, Naeem},
+  date = {2018-11-01},
+  journaltitle = {Journal of Big Data},
+  shortjournal = {J Big Data},
+  volume = {5},
+  number = {1},
+  pages = {42},
+  issn = {2196-1115},
+  doi = {10.1186/s40537-018-0151-6},
+  url = {https://doi.org/10.1186/s40537-018-0151-6},
+  urldate = {2023-03-24},
+  abstract = {In a majority–minority classification problem, class imbalance in the dataset(s) can dramatically skew the performance of classifiers, introducing a prediction bias for the majority class. Assuming the positive (minority) class is the group of interest and the given application domain dictates that a false negative is much costlier than a false positive, a negative (majority) class prediction bias could have adverse consequences. With big data, the mitigation of class imbalance poses an even greater challenge because of the varied and complex structure of the relatively much larger datasets. This paper provides a large survey of published studies within the last 8~years, focusing on high-class imbalance (i.e., a majority-to-minority class ratio between 100:1 and 10,000:1) in big data in order to assess the state-of-the-art in addressing adverse effects due to class imbalance. In this paper, two techniques are covered which include Data-Level (e.g., data sampling) and Algorithm-Level (e.g., cost-sensitive and hybrid/ensemble) Methods. Data sampling methods are popular in addressing class imbalance, with Random Over-Sampling methods generally showing better overall results. At the Algorithm-Level, there are some outstanding performers. Yet, in the published studies, there are inconsistent and conflicting results, coupled with a limited scope in evaluated techniques, indicating the need for more comprehensive, comparative studies.},
+  langid = {english},
+  keywords = {Big data,Cost-sensitive learners,Data sampling,High-class imbalance},
+  file = {/home/olaf/Zotero/storage/NACUDH65/Leevy et al. - 2018 - A survey on addressing high-class imbalance in big.pdf}
 }
 
 @online{liDeeperInsightsGraph2018,
@@ -1260,6 +1392,23 @@
   abstract = {The expressive power of neural networks is important for understanding deep learning. Most existing works consider this problem from the view of the depth of a network. In this paper, we study how width affects the expressiveness of neural networks. Classical results state that depth-bounded (e.g. depth-2) networks with suitable activation functions are universal approximators. We show a universal approximation theorem for width-bounded ReLU networks: width-(n + 4) ReLU networks, where n is the input dimension, are universal approximators. Moreover, except for a measure zero set, all functions cannot be approximated by width-n ReLU networks, which exhibits a phase transition. Several recent works demonstrate the benefits of depth by proving the depth-efficiency of neural networks. That is, there are classes of deep networks which cannot be realized by any shallow network whose size is no more than an exponential bound. Here we pose the dual question on the width-efficiency of ReLU networks: Are there wide networks that cannot be realized by narrow networks whose size is not substantially larger? We show that there exist classes of wide networks which cannot be realized by any narrow network whose depth is no more than a polynomial bound. On the other hand, we demonstrate by extensive experiments that narrow networks whose size exceed the polynomial bound by a constant factor can approximate wide and shallow network with high accuracy. Our results provide more comprehensive evidence that depth may be more effective than width for the expressiveness of ReLU networks.},
   langid = {english},
   file = {/home/olaf/Zotero/storage/43TKZUEY/Lu et al. - The Expressive Power of Neural Networks A View fr.pdf}
+}
+
+@online{luFiniteLayerNeural2020,
+  title = {Beyond {{Finite Layer Neural Networks}}: {{Bridging Deep Architectures}} and {{Numerical Differential Equations}}},
+  shorttitle = {Beyond {{Finite Layer Neural Networks}}},
+  author = {Lu, Yiping and Zhong, Aoxiao and Li, Quanzheng and Dong, Bin},
+  date = {2020-03-23},
+  number = {arXiv:1710.10121},
+  eprint = {arXiv:1710.10121},
+  eprinttype = {arxiv},
+  doi = {10.48550/arXiv.1710.10121},
+  url = {http://arxiv.org/abs/1710.10121},
+  urldate = {2023-03-24},
+  abstract = {In our work, we bridge deep neural network design with numerical differential equations. We show that many effective networks, such as ResNet, PolyNet, FractalNet and RevNet, can be interpreted as different numerical discretizations of differential equations. This finding brings us a brand new perspective on the design of effective deep architectures. We can take advantage of the rich knowledge in numerical analysis to guide us in designing new and potentially more effective deep networks. As an example, we propose a linear multi-step architecture (LM-architecture) which is inspired by the linear multi-step method solving ordinary differential equations. The LM-architecture is an effective structure that can be used on any ResNet-like networks. In particular, we demonstrate that LM-ResNet and LM-ResNeXt (i.e. the networks obtained by applying the LM-architecture on ResNet and ResNeXt respectively) can achieve noticeably higher accuracy than ResNet and ResNeXt on both CIFAR and ImageNet with comparable numbers of trainable parameters. In particular, on both CIFAR and ImageNet, LM-ResNet/LM-ResNeXt can significantly compress (\${$>$}50\$\textbackslash\%) the original networks while maintaining a similar performance. This can be explained mathematically using the concept of modified equation from numerical analysis. Last but not least, we also establish a connection between stochastic control and noise injection in the training process which helps to improve generalization of the networks. Furthermore, by relating stochastic training strategy with stochastic dynamic system, we can easily apply stochastic training to the networks with the LM-architecture. As an example, we introduced stochastic depth to LM-ResNet and achieve significant improvement over the original LM-ResNet on CIFAR10.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Computer Vision and Pattern Recognition,Computer Science - Machine Learning,Statistics - Machine Learning},
+  file = {/home/olaf/Zotero/storage/R2YAYUF6/Lu et al. - 2020 - Beyond Finite Layer Neural Networks Bridging Deep.pdf;/home/olaf/Zotero/storage/EQ8IUSIV/1710.html}
 }
 
 @inproceedings{lukovnikovImprovingBreadthWiseBackpropagation2021,
@@ -1465,6 +1614,25 @@
   file = {/home/olaf/Zotero/storage/2DRBS9BM/Pei et al. - 2020 - Geom-GCN Geometric Graph Convolutional Networks.pdf;/home/olaf/Zotero/storage/GXHUT4MA/2002.html}
 }
 
+@article{petersonDistanceTwoRandom2015,
+  title = {Distance between Two Random K-out Digraphs, with and without Preferential Attachment},
+  author = {Peterson, Nicholas R. and Pittel, Boris},
+  date = {2015-09},
+  journaltitle = {Advances in Applied Probability},
+  volume = {47},
+  number = {3},
+  pages = {858--879},
+  publisher = {{Cambridge University Press}},
+  issn = {0001-8678, 1475-6064},
+  doi = {10.1239/aap/1444308885},
+  url = {https://www.cambridge.org/core/journals/advances-in-applied-probability/article/distance-between-two-random-kout-digraphs-with-and-without-preferential-attachment/6FE570A434E6C6F0F1A9A686B60DD9DD},
+  urldate = {2023-04-06},
+  abstract = {A random k-out mapping (digraph) on [n] is generated by choosing k random images of each vertex one at a time, subject to a 'preferential attachment' rule: the current vertex selects an image i with probability proportional to a given parameter α = α(n) plus the number of times i has already been selected. Intuitively, the larger α becomes, the closer the resulting k-out mapping is to the uniformly random k-out mapping. We prove that α = Θ(n1/2) is the threshold for α growing 'fast enough' to make the random digraph approach the uniformly random digraph in terms of the total variation distance. We also determine an exact limit for this distance for the α = βn1/2 case.},
+  langid = {english},
+  keywords = {05C80,60C05,60F05,k-out digraphs,local limit theorem,preferential attachment,random digraphs,Random graphs,total variation distance,uniform},
+  file = {/home/olaf/Zotero/storage/4TYTXM9T/Peterson et Pittel - 2015 - Distance between two random k-out digraphs, with a.pdf}
+}
+
 @online{phamColumnNetworksCollective2016,
   title = {Column {{Networks}} for {{Collective Classification}}},
   author = {Pham, Trang and Tran, Truyen and Phung, Dinh and Venkatesh, Svetha},
@@ -1495,6 +1663,22 @@
   pubstate = {preprint},
   keywords = {Computer Science - Computer Vision and Pattern Recognition},
   file = {/home/olaf/Zotero/storage/LF848ZPY/Phan et Yamamoto - 2020 - Resolving Class Imbalance in Object Detection with.pdf;/home/olaf/Zotero/storage/FXNG32NQ/2006.html}
+}
+
+@online{poliGraphNeuralOrdinary2021,
+  title = {Graph {{Neural Ordinary Differential Equations}}},
+  author = {Poli, Michael and Massaroli, Stefano and Park, Junyoung and Yamashita, Atsushi and Asama, Hajime and Park, Jinkyoo},
+  date = {2021-06-22},
+  number = {arXiv:1911.07532},
+  eprint = {arXiv:1911.07532},
+  eprinttype = {arxiv},
+  doi = {10.48550/arXiv.1911.07532},
+  url = {http://arxiv.org/abs/1911.07532},
+  urldate = {2023-03-24},
+  abstract = {We introduce the framework of continuous--depth graph neural networks (GNNs). Graph neural ordinary differential equations (GDEs) are formalized as the counterpart to GNNs where the input-output relationship is determined by a continuum of GNN layers, blending discrete topological structures and differential equations. The proposed framework is shown to be compatible with various static and autoregressive GNN models. Results prove general effectiveness of GDEs: in static settings they offer computational advantages by incorporating numerical methods in their forward pass; in dynamic settings, on the other hand, they are shown to improve performance by exploiting the geometry of the underlying dynamics.},
+  pubstate = {preprint},
+  keywords = {Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Statistics - Machine Learning},
+  file = {/home/olaf/Zotero/storage/SCEWDMVB/Poli et al. - 2021 - Graph Neural Ordinary Differential Equations.pdf;/home/olaf/Zotero/storage/25DIXSAZ/1911.html}
 }
 
 @online{qianOrderedSubgraphAggregation2022,
@@ -1595,6 +1779,41 @@
   pubstate = {preprint},
   keywords = {Computer Science - Artificial Intelligence,Computer Science - Machine Learning,Computer Science - Neural and Evolutionary Computing},
   file = {/home/olaf/Zotero/storage/IIX94D89/Rybin et al. - 2023 - Invariant Layers for Graphs with Nodes of Differen.pdf;/home/olaf/Zotero/storage/7B7U976E/2302.html}
+}
+
+@article{santosUnifyingViewClass2023,
+  title = {A Unifying View of Class Overlap and Imbalance: {{Key}} Concepts, Multi-View Panorama, and Open Avenues for Research},
+  shorttitle = {A Unifying View of Class Overlap and Imbalance},
+  author = {Santos, Miriam Seoane and Abreu, Pedro Henriques and Japkowicz, Nathalie and Fernández, Alberto and Santos, João},
+  date = {2023-01-01},
+  journaltitle = {Information Fusion},
+  shortjournal = {Information Fusion},
+  volume = {89},
+  pages = {228--253},
+  issn = {1566-2535},
+  doi = {10.1016/j.inffus.2022.08.017},
+  url = {https://www.sciencedirect.com/science/article/pii/S1566253522001099},
+  urldate = {2023-03-24},
+  abstract = {The combination of class imbalance and overlap is currently one of the most challenging issues in machine learning. While seminal work focused on establishing class overlap as a complicating factor for classification tasks in imbalanced domains, ongoing research mostly concerns the study of their synergy over real-word applications. However, given the lack of a well-formulated definition and measurement of class overlap in real-world domains, especially in the presence of class imbalance, the research community has not yet reached a consensus on the characterisation of both problems. This naturally complicates the evaluation of existing approaches to address these issues simultaneously and prevents future research from moving towards the devise of specialised solutions. In this work, we advocate for a unified view of the problem of class overlap in imbalanced domains. Acknowledging class overlap as the overarching problem – since it has proven to be more harmful for classification tasks than class imbalance – we start by discussing the key concepts associated to its definition, identification, and measurement in real-world domains, while advocating for a characterisation of the problem that attends to multiple sources of complexity. We then provide an overview of existing data complexity measures and establish the link to what specific types of class overlap problems these measures cover, proposing a novel taxonomy of class overlap complexity measures. Additionally, we characterise the relationship between measures, the insights they provide, and discuss to what extent they account for class imbalance. Finally, we systematise the current body of knowledge on the topic across several branches of Machine Learning (Data Analysis, Data Preprocessing, Algorithm Design, and Meta-learning), identifying existing limitations and discussing possible lines for future research.},
+  langid = {english},
+  keywords = {Class imbalance,Class overlap,Complexity measures,Data complexity,Data intrinsic characteristics,Imbalanced data},
+  file = {/home/olaf/Zotero/storage/KVB3SLT3/Santos et al. - 2023 - A unifying view of class overlap and imbalance Ke.pdf;/home/olaf/Zotero/storage/64XEKTHF/S1566253522001099.html}
+}
+
+@article{scarselliGraphNeuralNetwork2009,
+  title = {The {{Graph Neural Network Model}}},
+  author = {Scarselli, Franco and Gori, Marco and Tsoi, Ah Chung and Hagenbuchner, Markus and Monfardini, Gabriele},
+  date = {2009-01},
+  journaltitle = {IEEE Transactions on Neural Networks},
+  volume = {20},
+  number = {1},
+  pages = {61--80},
+  issn = {1941-0093},
+  doi = {10.1109/TNN.2008.2005605},
+  abstract = {Many underlying relationships among data in several areas of science and engineering, e.g., computer vision, molecular chemistry, molecular biology, pattern recognition, and data mining, can be represented in terms of graphs. In this paper, we propose a new neural network model, called graph neural network (GNN) model, that extends existing neural network methods for processing the data represented in graph domains. This GNN model, which can directly process most of the practically useful types of graphs, e.g., acyclic, cyclic, directed, and undirected, implements a function tau(G,n) isin IRm that maps a graph G and one of its nodes n into an m-dimensional Euclidean space. A supervised learning algorithm is derived to estimate the parameters of the proposed GNN model. The computational cost of the proposed algorithm is also considered. Some experimental results are shown to validate the proposed learning algorithm, and to demonstrate its generalization capabilities.},
+  eventtitle = {{{IEEE Transactions}} on {{Neural Networks}}},
+  keywords = {Biological system modeling,Biology,Chemistry,Computer vision,Data engineering,Data mining,graph neural networks (GNNs),graph processing,Graphical domains,Neural networks,Parameter estimation,Pattern recognition,recursive neural networks,Supervised learning},
+  file = {/home/olaf/Zotero/storage/UZ2T6YTM/Scarselli et al. - 2009 - The Graph Neural Network Model.pdf;/home/olaf/Zotero/storage/B7PF4F7J/4700287.html}
 }
 
 @article{shelhamerFullyConvolutionalNetworks2017,
@@ -1774,6 +1993,13 @@
   file = {/home/olaf/Zotero/storage/42JLWD99/Topping et al. - 2022 - Understanding over-squashing and bottlenecks on gr.pdf;/home/olaf/Zotero/storage/RA25TFV9/2111.html}
 }
 
+@online{TorchGeometricNn,
+  title = {Torch\_geometric.Nn.Conv.Sage\_conv — Pytorch\_geometric Documentation},
+  url = {https://pytorch-geometric.readthedocs.io/en/latest/_modules/torch_geometric/nn/conv/sage_conv.html},
+  urldate = {2023-04-06},
+  file = {/home/olaf/Zotero/storage/C9Q3H8KH/sage_conv.html}
+}
+
 @online{vaswaniAttentionAllYou2017,
   title = {Attention {{Is All You Need}}},
   author = {Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N. and Kaiser, Lukasz and Polosukhin, Illia},
@@ -1884,6 +2110,24 @@
   isbn = {978-1-4503-6674-8},
   keywords = {Graph Analysis,Neural Network,Social Network},
   file = {/home/olaf/Zotero/storage/K445M82Q/Wang et al. - 2019 - Heterogeneous Graph Attention Network.pdf}
+}
+
+@inproceedings{wangMCNEEndtoEndFramework2019,
+  title = {{{MCNE}}: {{An End-to-End Framework}} for {{Learning Multiple Conditional Network Representations}} of {{Social Network}}},
+  shorttitle = {{{MCNE}}},
+  booktitle = {Proceedings of the 25th {{ACM SIGKDD International Conference}} on {{Knowledge Discovery}} \& {{Data Mining}}},
+  author = {Wang, Hao and Xu, Tong and Liu, Qi and Lian, Defu and Chen, Enhong and Du, Dongfang and Wu, Han and Su, Wen},
+  date = {2019-07-25},
+  eprint = {1905.11013},
+  eprinttype = {arxiv},
+  eprintclass = {cs},
+  pages = {1064--1072},
+  doi = {10.1145/3292500.3330931},
+  url = {http://arxiv.org/abs/1905.11013},
+  urldate = {2023-04-06},
+  abstract = {Recently, the Network Representation Learning (NRL) techniques, which represent graph structure via low-dimension vectors to support social-oriented application, have attracted wide attention. Though large efforts have been made, they may fail to describe the multiple aspects of similarity between social users, as only a single vector for one unique aspect has been represented for each node. To that end, in this paper, we propose a novel end-to-end framework named MCNE to learn multiple conditional network representations, so that various preferences for multiple behaviors could be fully captured. Specifically, we first design a binary mask layer to divide the single vector as conditional embeddings for multiple behaviors. Then, we introduce the attention network to model interaction relationship among multiple preferences, and further utilize the adapted message sending and receiving operation of graph neural network, so that multi-aspect preference information from high-order neighbors will be captured. Finally, we utilize Bayesian Personalized Ranking loss function to learn the preference similarity on each behavior, and jointly learn multiple conditional node embeddings via multi-task learning framework. Extensive experiments on public datasets validate that our MCNE framework could significantly outperform several state-of-the-art baselines, and further support the visualization and transfer learning tasks with excellent interpretability and robustness.},
+  keywords = {Computer Science - Machine Learning,Computer Science - Social and Information Networks},
+  file = {/home/olaf/Zotero/storage/GZS9Z8V9/Wang et al. - 2019 - MCNE An End-to-End Framework for Learning Multipl.pdf;/home/olaf/Zotero/storage/XVI7T7E3/1905.html}
 }
 
 @online{wangTwostage3DUnet2018,

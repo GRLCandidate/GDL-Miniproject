@@ -1,5 +1,5 @@
 PANDOC_CMD = pandoc
-PANDOC_OPTS = --citeproc --csl chicago-author-date.csl --template ./template.latex
+PANDOC_OPTS = --filter pandoc-crossref --citeproc --csl ieee.csl --template ./template.latex
 IN_FILE = main.md
 OUT_FILE = 1045966-geometric_deep_learning-miniproject.pdf
 BBT_URL = http://127.0.0.1:23119/better-bibtex/export/collection?/1/IWJNI9X3.biblatex
