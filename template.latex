@@ -464,12 +464,20 @@ $endif$
 $if(has-frontmatter)$
 \frontmatter
 $endif$
-$if(title)$
-$if(beamer)$
-\frame{\titlepage}
+
+$if(twocolumn)$
+\twocolumn[
+  \begin{@twocolumnfalse}
+    \maketitle
+    $if(abstract)$
+    \begin{abstract}
+    $abstract$
+    \end{abstract}
+    $endif$
+  \end{@twocolumnfalse}
+]
 $else$
 \maketitle
-$endif$
 $if(abstract)$
 \begin{abstract}
 $abstract$

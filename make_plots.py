@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import torch
 
 from ads.data import draw_graph, mk_datapoint, add_colors
-from matplotlib.transforms import ScaledTranslation
+from matplotlib.transforms import ScaledTranslation, offset_copy
 
 
 def make_task_example(axes):
@@ -78,7 +78,7 @@ def make_acc_vs_complexity(fig, ax):
     ax.errorbar(complexities, dice_multi_graff, yerr=dice_multi_graff_std, label='MultiGRAFF', transform=t2, capsize=5)
 
     dice_gcn, dice_gcn_std = load_data(DP_GCN)
-    ax.errorbar(complexities, dice_gcn, yerr=dice_gcn_std, label='GCN', capsize=5)
+    ax.errorbar(complexities, dice_gcn, yerr=dice_gcn_std, label='SAGE', capsize=5)
 
     benchmark = load_benchmark_dice(CLASS_SIZES)
     ax.plot(complexities, benchmark, label='benchmark')
@@ -87,10 +87,23 @@ def make_acc_vs_complexity(fig, ax):
 
 
 def main():
+    def add_label(fig, ax, label):
+        ax.text(
+            0, 1, f'({label})',
+            horizontalalignment='center',
+            verticalalignment='center',
+            transform=offset_copy(ax.transAxes, fig, y=0.1),
+            fontweight='bold',
+        )
+
     fig = plt.figure(figsize=(8, 4))
     ex1 = plt.subplot2grid((2, 2), (0, 0), colspan=1, rowspan=1, fig=fig)
+    add_label(fig, ex1, 'A')
     ex2 = plt.subplot2grid((2, 2), (1, 0), colspan=1, rowspan=1, fig=fig)
+    add_label(fig, ex2, 'B')
     a_vs_c = plt.subplot2grid((2, 2), (0, 1), colspan=1, rowspan=2, fig=fig)
+    add_label(fig, a_vs_c, 'C')
+
     make_task_example([ex1, ex2])
 
     make_acc_vs_complexity(fig, a_vs_c)
