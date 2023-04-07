@@ -24,11 +24,11 @@ class GridSearcher:
             return accs_np.mean(), accs_np.std()
         idx, params = idx_params
         kwargs = dict(params)
-        print(f'training with params {idx+1:3d}/{self.num_choices:3d} ({idx/self.num_choices * 100:4.1f}%): {kwargs}')
+        # print(f'training with params {idx+1:3d}/{self.num_choices:3d} ({idx/self.num_choices * 100:4.1f}%): {kwargs}')
         metrics, models, results = train_with_params(self.iterations, self.train_dl, self.val_dl, self.model_cls, **kwargs, **self.shared_kwargs)
         ava, std = describe_val_acc(results)
-        print(f'average acc: {ava:.4f}±{std:.4f}')
-        print()
+        # print(f'average acc: {ava:.4f}±{std:.4f}')
+        # print()
         return {
             'acc': ava,
             'metrics': metrics,

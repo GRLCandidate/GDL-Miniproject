@@ -1,4 +1,5 @@
 import copy
+import numpy as np
 import torch
 import torch.nn as nn
 import uuid
@@ -44,11 +45,13 @@ def train(model, train_dl, val_dl, loss_fn, num_epochs, optim_gen, accuracy_scor
             "val_acc": val_acc
         }
         if val_acc > max_acc:
+            max_acc = val_acc
             best_model = copy.deepcopy(model)
             best_result = result
         metrics.append(result)
     path = f'models/model-{uuid.uuid4()}.pt'
     torch.save(best_model, path)
+    # print(f'best result: {best_result}')
     return metrics, path, best_result
 
 
@@ -57,7 +60,7 @@ def train_iteration(net, dataloader, optim, loss_fn, epoch, accuracy_score, logg
 
     total_loss = 0
     total_acc = 0
-    for datapoint in dataloader:
+    for idx, datapoint in enumerate(dataloader):
         pred = net(datapoint)
 
         y = datapoint.y
@@ -72,9 +75,10 @@ def train_iteration(net, dataloader, optim, loss_fn, epoch, accuracy_score, logg
 
     avg_loss = total_loss / len(dataloader)
     avg_acc = total_acc / len(dataloader)
+    logger(y[:10])
     logger(f'Training set: Average loss: {avg_loss:.4f}')
     logger(f'Training set: Average Acc: {avg_acc:.4f}')
-    return avg_acc, avg_loss
+    return avg_loss, avg_acc
 
 
 def dice_acc(pred, true):
@@ -83,6 +87,12 @@ def dice_acc(pred, true):
     intersection = ((y_hat == 1) & (true == 1)).sum()
     union = (y_hat == 1).sum() + (true == 1).sum()
     return (2 * intersection + eps) / (union + eps)
+
+
+def acc(pred, true):
+    y_hat = torch.argmax(pred, dim=1)
+    correct = (y_hat == true).sum().item()
+    return correct / len(true)
 
 
 def train_with_params(iterations, train_dl, val_dl, model_cls, num_epochs, lr, **kwargs):
@@ -99,3 +109,28 @@ def train_with_params(iterations, train_dl, val_dl, model_cls, num_epochs, lr, *
         best_results.append(best_result)
     print()
     return all_metrics, best_models, best_results
+
+
+def score_results(test_dl, r):
+    models = r['models']
+    dice_scores = []
+    accuracies = []
+
+    for model in models:
+        model_dice = 0
+        model_acc = 0
+        for data in test_dl:
+            pred = model(data)
+            model_dice += dice_acc(pred, data.y)
+            model_acc += acc(pred, data.y)
+        dice_scores.append(model_dice / len(test_dl))
+        accuracies.append(model_acc / len(test_dl))
+
+    dice_scores_np = np.array(dice_scores)
+    accuracies_np = np.array(accuracies)
+    return {
+        'avg_acc': accuracies_np.mean(),
+        'std_acc': accuracies_np.std(),
+        'avg_dice': dice_scores_np.mean(),
+        'std_dice': dice_scores_np.std(),
+    }

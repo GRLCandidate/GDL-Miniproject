@@ -49,8 +49,8 @@ class GRAFFLayer(nn.Module):
         self.W_tilde = nn.parameter.Parameter(torch.empty((input_dim, input_dim)))
 
         nn.init.ones_(self.Omega)
-        nn.init.kaiming_uniform_(self.W, a=math.sqrt(5))
-        nn.init.kaiming_uniform_(self.W_tilde, a=math.sqrt(5))
+        nn.init.kaiming_normal_(self.W)
+        nn.init.kaiming_normal_(self.W_tilde)
 
     def forward(self, adj_norm, x, x0):
         # return x + self.step_size * self.adj_norm @ x @ (self.W + self.W.T)
@@ -75,7 +75,6 @@ class GRAFFNetwork(nn.Module):
 
     def __init__(self, input_dim, hidden_dim, output_dim, T, step_size, dropout):
         super(GRAFFNetwork, self).__init__()
-        print(f'input_dim: {input_dim} hidden_dim={hidden_dim} output_dim={output_dim}')
         self.input_dim = input_dim
         self.output_dim = output_dim
         self.layers = int(T // step_size)
@@ -91,7 +90,7 @@ class GRAFFNetwork(nn.Module):
             nn.LeakyReLU(),
         )
 
-    def forward(self, data):
+    def forward(self, data, debug=False):
         x0 = self.encoder(data.x)
         x = x0
 
@@ -115,12 +114,13 @@ class GRAFFNetwork(nn.Module):
         )
 
 
-class LayeredGRAFFNetwork(nn.Module):
+class MultiGRAFFNetwork(nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim, num_layers, T, step_size, dropout, ev_trans_shared):
-        super(LayeredGRAFFNetwork, self).__init__()
+        super(MultiGRAFFNetwork, self).__init__()
         self.num_convs_per_graff = int(T // step_size)
         self.encoder = nn.Sequential(
             nn.Linear(input_dim, hidden_dim),
+            nn.LayerNorm((hidden_dim,)),
             nn.Dropout(dropout),
         )
 
@@ -128,27 +128,30 @@ class LayeredGRAFFNetwork(nn.Module):
         if ev_trans_shared:
             self.ev_trans = nn.Sequential(
                 nn.Linear(hidden_dim, hidden_dim),
-                nn.ReLU(),
+                nn.LayerNorm((hidden_dim,)),
+                nn.LeakyReLU(),
             )
         else:
             self.ev_trans = []
             for _ in range(num_layers):
                 self.ev_trans.append(nn.Sequential(
                     nn.Linear(hidden_dim, hidden_dim),
-                    nn.ReLU(),
+                    nn.LayerNorm((hidden_dim,)),
+                    nn.LeakyReLU(),
                 ))
         convs = []
         for _ in range(num_layers):
-            convs.append(GRAFFLayer(input_dim, output_dim, step_size))
+            convs.append(GRAFFLayer(hidden_dim, hidden_dim, step_size))
 
         self.convs = nn.Sequential(*convs)
 
         self.decoder = nn.Sequential(
             nn.Linear(hidden_dim, output_dim),
+            nn.LeakyReLU(),
             nn.Dropout(dropout)
         )
 
-    def forward(self, data):
+    def forward(self, data, debug=False):
         x0 = self.encoder(data.x)
         x = x0
 
@@ -165,11 +168,14 @@ class LayeredGRAFFNetwork(nn.Module):
 
         x = self.decoder(x)
         y = F.softmax(x, dim=1)
+        if debug and False:
+            print(f'x: {x[:10,:]}')
+            print(f'y: {y[:10,:]}')
         return y
 
     @staticmethod
     def for_dataset(dataset, **kwargs):
-        return LayeredGRAFFNetwork(
+        return MultiGRAFFNetwork(
             input_dim=dataset.x.shape[-1],
             output_dim=2,
             **kwargs
