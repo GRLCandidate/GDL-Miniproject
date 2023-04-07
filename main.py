@@ -6,6 +6,7 @@ from ads import data
 from ads.grid_search import grid_search
 from ads.models import MultiGRAFFNetwork, GRAFFNetwork, ClassicGNN
 from ads.training import score_results
+from datetime import datetime
 
 
 def class_sizes(dl):
@@ -59,6 +60,7 @@ def train_good_multi_graff(iterations, num_epochs, train_dl, val_dl):
 
 
 def main():
+    start_time = datetime.now()
     seed = itertools.count(1045966)
     iterations = 5
     graph_size = 100
@@ -99,6 +101,9 @@ def main():
             print('\n')
 
         torch.save(class_sizes(test_dl), f'results/{int(time.time())}-{idx}-class_sizes.pt')
+    end_time = datetime.now()
+    print(end_time)
+    print(end_time - start_time)
 
     # Generate a bunch of training datasets
     # for each dataset:
