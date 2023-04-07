@@ -81,7 +81,7 @@ def draw_graph(data, pos=None, seed=None, axis=None):
     colors = np.array(['red', 'green', 'blue', 'purple', 'grey', 'black', 'white', 'orange'])
     color_str = colors[node_colors.detach().numpy()]
 
-    size = data.y * 300 + 200
+    size = data.y * 200 + 100
 
     nx.draw(
         graph,

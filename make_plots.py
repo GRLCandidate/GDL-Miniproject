@@ -5,21 +5,18 @@ from ads.data import draw_graph, mk_datapoint, add_colors
 from matplotlib.transforms import ScaledTranslation
 
 
-def make_task_example():
+def make_task_example(axes):
     seed = 1045967
-    data = mk_datapoint(20, 4, 3, out_degree=2, seed=seed)
-
-    fix, axis = plt.subplots(1, 2)
+    data = mk_datapoint(10, 4, 3, out_degree=2, seed=seed)
 
     add_colors(data, 4, 1, seed)
-    pos = draw_graph(data, seed=seed, axis=axis[0])
+    pos = draw_graph(data, seed=seed, axis=axes[0])
 
     add_colors(data, 4, 3, seed)
-    draw_graph(data, pos, seed, axis=axis[1])
-    plt.savefig("img/task_example.pdf")
+    draw_graph(data, pos, seed, axis=axes[1])
 
 
-def make_acc_vs_complexity():
+def make_acc_vs_complexity(fig, ax):
     def load_data(files):
         dice = []
         std = []
@@ -72,8 +69,6 @@ def make_acc_vs_complexity():
 
     complexities = list(range(1, 6 + 1))
 
-    fig, ax = plt.subplots()
-
     dice_graff, dice_graff_std = load_data(DP_GRAFF)
     t1 = ax.transData + ScaledTranslation(-5 / 72, 0, fig.dpi_scale_trans)
     ax.errorbar(complexities, dice_graff, yerr=dice_graff_std, label='GRAFF', transform=t1, capsize=5)
@@ -90,12 +85,17 @@ def make_acc_vs_complexity():
 
     ax.legend()
 
-    plt.show()
-
 
 def main():
-    make_acc_vs_complexity()
-    make_task_example()
+    fig = plt.figure(figsize=(8, 4))
+    ex1 = plt.subplot2grid((2, 2), (0, 0), colspan=1, rowspan=1, fig=fig)
+    ex2 = plt.subplot2grid((2, 2), (1, 0), colspan=1, rowspan=1, fig=fig)
+    a_vs_c = plt.subplot2grid((2, 2), (0, 1), colspan=1, rowspan=2, fig=fig)
+    make_task_example([ex1, ex2])
+
+    make_acc_vs_complexity(fig, a_vs_c)
+
+    plt.savefig('img/the_figure.pdf', bbox_inches='tight')
 
 
 if __name__ == '__main__':
