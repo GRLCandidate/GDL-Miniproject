@@ -29,19 +29,19 @@ toc: false
 
 # Introduction
 
-Graph neural networks (GNNs) have been used successfully on a wide range of applications, including social networks[@wangMCNEEndtoEndFramework2019], image segmentation[@aflaloDeepCutUnsupervisedSegmentation2022], and protein interactions[@jhaPredictionProteinProtein2022]. Geometric deep learning studies deep neural networks, including GNNs, by looking at the geometry of the underlying spaces[@bronsteinGeometricDeepLearning2017]. One result in this field studied GNNs by viewing them as discretized descriptions of particle interactions, and derived the GRAFF layer from that analysis[@digiovanniGraphNeuralNetworks2022a]. Apart from wide-ranging theoretical guarantees, variants of GRAFF can potentially be implemented very efficiently, and generalizes better to different types of data. While a GRAFF-based network competitively on state-of-the art models on both homophilic and heterophilic tasks, the relatively low parameter count and low reliance on non-linearities does not fit the intuition of a GNN "processing" graph data. This raises the question of whether it can perform well on complex tasks with larger problem radii.
+Graph neural networks (GNNs) have been used successfully on a wide range of applications, including learning social network representations[@wangMCNEEndtoEndFramework2019], image segmentation[@aflaloDeepCutUnsupervisedSegmentation2022], and prediction protein interactions[@jhaPredictionProteinProtein2022]. Geometric deep learning analyses deep neural networks, including GNNs, by looking at the geometry of the underlying spaces[@bronsteinGeometricDeepLearning2017]. One paper in this field studied GNNs by viewing them as discretized descriptions of particle interactions, and derived the GRAFF layer[@digiovanniGraphNeuralNetworks2022a]. Apart from wide-ranging theoretical guarantees, variants of GRAFF can potentially be implemented very efficiently, and match or beat state-of-the art models on both homophilic and heterophilic tasks. However, the relatively low parameter count and diffusion-based design does not fit the intuition of a GNN discretely "processing" graph data. This suggests that it would have difficulties with complex tasks with larger problem radii.
 
-This study investigates this question by evaluating a GRAFF-based network against a GNN benchmark on a synthetic datasets. The datasets are based on logical expressions of varying length, and are taken as a proxy for increasing task complexity. In addition, a new MultiGRAFF architecture based on the composition of different GRAFF layers is proposed, and evaluated on the same dataset.
+This study investigates this hypothesis by evaluating a GRAFF-based network against a GNN benchmark on a (to my knowledge) novel class of synthetic datasets which are based on logical expressions of varying length. This length is taken as a proxy for task complexity. In addition, a new MultiGRAFF architecture based on the composition of different GRAFF layers is proposed, and evaluated on the same dataset.
 
 I find that on this particular class of long range task, MultiGRAFF and GNN perform about similarly, and both outperform a GRAFF-based network.
 
 # Methodology
 
-To establish how GRAFF and the novel MultiGRAFF perform for tasks of different complexities, they were trained and evaluated on a synthetic dataset. In addition, the standard SASGE GNN was trained as a benchmark[@hamiltonInductiveRepresentationLearning2018].
+To establish how GRAFF and the novel MultiGRAFF perform for tasks of different complexities, they were trained and evaluated on a synthetic dataset. In addition, the standard SASGE GNN was trained to provide a benchmark[@hamiltonInductiveRepresentationLearning2018].
 
 ## Synthetic Dataset
 
-To test model performance across different task complexities, a range of 6 synthetic datasets was generated. Each dataset consists of 50 graphs $G=(V,E,c)$, with nodes $V$, edges $E$ and node colors $c: V \rightarrow \left\{ 1, 2, \ldots, 6 \right\}$. The tasks were all binary node classifications tasks, where the class of a node for the $k$-th dataset is given by a logical expression $\phi_k : V \rightarrow \mathbb B$, for $1 \leq k \leq 6$.
+To test model performance across different task complexities, a range of 6 synthetic datasets was generated. Each dataset consists of 50 graphs $G=(V,E,c)$, with nodes $V$, edges $E$ and node colors $c: V \rightarrow \left\{ 1, 2, \ldots, 6 \right\}$. The tasks are all binary node classifications tasks, where the class of a node for the $k$-th dataset is given by a logical expression $\phi_k : V \rightarrow \mathbb B$, for $1 \leq k \leq 6$.
 
 The first expression is
 
@@ -51,11 +51,11 @@ indicating that $\phi_1 (v)$ is true _iff_ $v$ has the first color. All followin
 
 $$ \phi_{k+1}(u) = \left[ \exists v . (u, v) \in E \land c(u) = k+1 \land \phi_k(v) . \right]$$ {#eq:met-phik}
 
-For an example task, see [@fig:the_figure]  (A, B). The proportion of nodes with a `true` label drops off with increasing $k$, for the exact ratio in the test sets see tab. \ref{tab:class-sizes}.
+For an example task, see [@fig:the_figure]  (A, B). The task is designed so that the proportion of nodes with a `true` label drops off with increasing $k$ (see tab. \ref{tab:class-sizes}).
 
 \begin{figure*}
-\includegraphics[width=\textwidth]{./img/the_figure.pdf}
-\caption{(A, B) Illustration of $\phi_1$ (A) and $\phi_2$ (B). The order of colors is 1=red, 2=green, 3=blue, 4=purple. Big nodes evaluate to true, small to false. In plain English, the left task is simply \textit{all red nodes}. The right task translates to \textit{all blue nodes, neighbouring [a green node neighbouring a red node]}. (C) Performance of different models on tasks of differing complexity. The y axis is the dice score, x axis is the complexity $k$. The lines indicate mean performance of 5 models, the error bars are centred on the mean and show one standard deviation in both directions. The benchmark is the dice score of a classifier which always guesses the larger class. \label{fig:the_figure}}
+\includegraphics[width=\textwidth]{./img/the_figure.pdf} %*
+\caption{(A, B) Illustration of $\phi_1$ (A) and $\phi_3$ (B). The order of colors is 1=red, 2=green, 3=blue, 4=purple. Big nodes evaluate to true, small to false. In plain English, the left task is simply \textit{all red nodes}. The right task translates to \textit{all blue nodes, neighbouring [a green node neighbouring a red node]}. (C) Performance of different models on tasks of differing complexity. The y axis is the dice score, x axis is the complexity $k$. The lines indicate mean performance of 5 models, the error bars are centred on the mean and show one standard deviation in both directions. The benchmark is the dice score of a classifier which always guesses the larger class. \label{fig:the_figure}}
 \end{figure*}
 
 The graphs are generated by preferential attachment with out-degree 2 and $\alpha=3$[@petersonDistanceTwoRandom2015]. The graphs are then converted into undirected graphs by calculating the symmetric closure of $E$.
@@ -66,7 +66,7 @@ $$ \exists v . (u, v) \in E \land \xi , $$ {#eq:met-graded}
 
 where $v$ is free in $\xi$. This is known as graded normal form. Due to work by @barceloLogicalExpressivenessGraph2020 we therefore know that for any $k$ there exists a GCN of the architecture described below which is able to represent $\phi_k$ exactly.
 
-However, we also note that $\phi_k$ has a problem radius equal to $k$. A GCN with $l$ layers will therefore not be able to represent $\phi_k$ for $k > \phi$, due to under-reaching. Furthermore, with increasing $k$, training difficulty will increase due to over-squashing[@alonBottleneckGraphNeural2021].
+However, we also note that $\phi_k$ has a problem radius equal to $k$. A GCN with $l$ layers will therefore not be able to represent $\phi_k$ for $k > \phi$, due to under-reaching. Furthermore, with increasing $k$, training difficulty will also rise due to over-squashing[@alonBottleneckGraphNeural2021] and class imbalance.
 
 \begin{table}
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}c | r r r r r r}
@@ -83,9 +83,9 @@ Each individual dataset was split into training, validation, and test sets using
 
 As shown in tab. \ref{tab:class-sizes}, the data become more class imbalanced with increasing $k$. The models were therefore trained using a dice loss, which was designed to provide a strong gradient signal in imbalanced datasets in medical image analysis[@crumGeneralizedOverlapMeasures2006].
 
-To tune the hyperparameters of the respective models, an exhaustive grid search was performed, with the possible value ranges indicated for each model individually. Note that the range of used parameters was limited by computational constraints. Hyperparameters were optimized separately for each dataset. All models were trained using an Adam optimizer over 100 epochs, with $\beta_1 = 0.9$ and $\beta_2 = 0.999$. The learning rate was a hyperparameter.
+To tune the hyperparameters of the respective models, an exhaustive grid search was performed, with the possible value ranges indicated for each model individually. Hyperparameters were optimized separately for each dataset. All models were trained using an Adam optimizer over 100 epochs, with $\beta_1 = 0.9$ and $\beta_2 = 0.999$.
 
-The input data are given by the adjacency matrix $\pmb A \in \mathbb{R}^{|V| \times |V|}$ and a feature vector $\pmb X \in \mathbb{R}^{|V| \times 6}$ which is a one-hot encoding of the color $c(v)$ for all $v \in V$.
+The input data are given by the adjacency matrix $\pmb A \in \mathbb{R}^{|V| \times |V|}$ and a feature vector $\pmb X \in \mathbb{R}^{|V| \times 6}$ which consists of one-hot encodings of the color $c(v)$ for all $v \in V$.
 
 ### GRAFF
 
@@ -109,13 +109,13 @@ The following hyperparameters produced the best results on the validation sets o
 
 ### MultiGRAFF
 
-This is a natural extension of the GRAFF model, which layers $N$ GRAFF operations, and interleaves them with simple perceptrons and nonlinearities. $\text{Enc}$ and $\text{Dec}$ are defined as above, except that the decoder is simply given by the softmax function. In addition we use simple perceptrons $\text{SLP}_ i$ for $1 \leq i \leq N$. Then this model is given by
+This is a natural extension of the GRAFF model, which layers $N$ GRAFF operations, and interleaves them with simple perceptrons and nonlinearities. $\text{Enc}$ and $\text{Dec}$ are defined as above, except that the decoder is simply given by the softmax function. In addition we use simple perceptrons $\text{SLP}_ i$ for $1 \leq i \leq N$. The model is given by
 
 $$\text{MGF}: \text{Dec} \circ \text{SLP}_ N \circ \text{GRAFF}_ N \circ \text{SLP}_ {N-1} \circ \text{GRAFF}_ {N-1} \circ \cdots \circ \text{SLP}_ 1 \circ \text{GRAFF}_ 1 \circ \text{Enc},  $$ {#eq:exp-multigraff}
 
 where, abusing notation, $\text{GRAFF}(\pmb{X})$ means setting $\pmb H (0) = \pmb X$, and applying @eq:exp-graff $T/\tau$ times, yielding $\pmb H (T)$ as the result (it is assumed that $\tau$ divides $T$). All the $\text{GRAFF}_ i$ operations use distinct parameters $\beta_ i$, $\pmb {\omega}_ i$, and $\pmb{W}_ i$, while $\tau$ and $T$ are shared hyperparameters. Optionally, the perceptron weights can be shared, in which case $\text{SLP}_ i = \text{SLP}_ j$ for all $i, j$.
 
-This extension of GRAFF fits well into the deep learning blueprint. Since both the $\text{GRAFF}$ operation and the $\text{SLP}$ are permutation equivariant, the MultiGRAFF also has this property.
+This extension of GRAFF fits well into the deep learning blueprint: Since both the $\text{GRAFF}$ operation and the $\text{SLP}$ are permutation equivariant, the MultiGRAFF also has this property.
 
 The following hyperparameters achieved best average performance on the validation sets: learning rate 0.01 and $d_{hidden}=8$ for all datasets; $T=2$ for $k \in \left\{ 1,2,5,6 \right\}$; $T=3$ elsewhere; $\tau = 1$ for $k \in \left\{3,6\right\}$, $\tau=0.5$ elsewhere; $\texttt{num\_layers} = 4$ for $k \in \left\{3,5\right\}$; the equivariant transformation was shared for $k \in \left\{ 4,6\right\}$, and not shared elsewhere.
 
@@ -123,15 +123,15 @@ The following hyperparameters achieved best average performance on the validatio
 
 The SAGE GNN is used[@hamiltonInductiveRepresentationLearning2018], as in the standard Torch Geometric implementation[@TorchGeometricNn]. The layers are given by
 
-$$\mathbf{x}^{\prime}_i = \mathbf{W}_1 \mathbf{x}_i + \mathbf{W}_2 \cdot \mathrm{mean}_{j \in \mathcal{N(i)}} \mathbf{x}_j, $$ {#eq:exp-sage}
+$$\mathbf{h}^{\prime}_u = \mathbf{W}_1 \mathbf{h}_u + \mathbf{W}_2 \cdot \mathrm{mean}_{v \in \mathcal{N}(u)} \mathbf{h}_v, $$ {#eq:exp-sage}
 
-and they are interleaved with `ReLU` activations. The hyperparameters for this model are the size of the hidden layers, and the number of layers.
+where $\pmb{h}_ u$ and $\pmb{h}'_ v$ are the hidden features of node $u$ for the current and next layer, respectively. The layers are interleaved with `ReLU` activations. The hyperparameters for this model are the size of the hidden layers, and the number of layers.
 
 The following hyperparameters achieved the best average performance on the validation sets: learning rate 0.01, $d_{hidden}=4$ across all datasets; $\texttt{num\_layers}=3$ for $T \in \left\{1,2\right\}$, $\texttt{num\_layers}=4$ for $T \in \left\{3,6\right\}$, $\texttt{num\_layers} = 5$ elsewhere.
 
 # Results
 
-The experiment results are shown in @fig:the_figure (C). The models show an overall drop-off in performance as task complexity increases, which shows that the complexity measure used in this study does in fact correspond to difficulty. All models perform considerably better than guessing the distribution mode, which shows that they have learned some relevant features. There were considerable differences in model performance for the same task, with the same hyperparameter performance, with dice score differences of 0.1 or more.
+The experiment results are shown in @fig:the_figure (C). The models show an overall drop-off in performance as task complexity increases, which shows that the complexity measure used in this study does in fact correspond to difficulty. All models perform considerably better than guessing the distribution mode, indicating that they have learned some relevant features. There were considerable differences in model performance for the same task, and choice of hyperparameters, with dice score differences of 0.1 or more.
 
 MultiGRAFF and SAGE show no statistically significant difference in performance, but both models outperform GRAFF. This confirms both hypotheses of this paper: that GRAFF would struggle with tasks of large logical complexity, and that this issue could be mitigated by layering multiple different GRAFF networks on top of each other. However, MultiGRAFF is more computationally expensive in both training and usage, taking more than three times longer than SAGE on all tasks.
 
@@ -145,10 +145,8 @@ MultiGRAFF and SAGE show no statistically significant difference in performance,
 
 # Discussion and Outlook
 
-The study investigated whether a GRAFF-based network could perform well on a specific class complex tasks, and whether performance could be increased by MultiGRAFF, a layering of several GRAFF networks. To establish this, a (to my knowledge) novel synthetic benchmark was created. Experiments showed that GRAFF is indeed outperformed on the benchmark by standard SAGE model, and that MultiGRAFF is able to match SAGE. However, MultiGRAFF falls behind SAGE in performance by about a factor of three, and is therefore not a competitive model architecture in its current form. One direction for making it competitive could be to deploy it on longer-range tasks, where it could potentially make due with much fewer layers than a SAGE-like architecture.
+The study investigated whether a GRAFF-based network could perform well on a specific class of complex tasks, and whether performance could be increased by MultiGRAFF, a layering of several GRAFF networks. To establish this, a novel synthetic benchmark was created. Experiments showed that GRAFF is indeed outperformed on the benchmark by standard SAGE model, and that MultiGRAFF is able to match SAGE. However, MultiGRAFF falls behind SAGE in performance by about a factor of three, and is therefore not a competitive model architecture in its current form. One direction for making it so could be to deploy it on longer-range tasks, where it could potentially make due with much fewer layers than a SAGE-like architecture.
 
-The investigation was limited by computational power: further work could increase confidence in the claims by doing more thorough hyperparameter optimization, and running the models for more epochs. Another important consideration is that the synthetic benchmark combined both class imbalance and increased logical complexity -- it would be interesting to study the effect of both  of those factors on model performance in isolation.
-
-Examination of loss curves showed that the variance in MultiGRAFF model performance is partially due to exploding or vanishing gradients on a small fraction of models. This issue could be resolved through more principled parameter initialization schemes.
+While this study provides insights into model performance on complex logical tasks, I suggest three things to gain more confidence in the claims of this work. First, more thorough hyperparameter optimization should be done, and the models should be run for more epochs, seeing as the experiments were constrained by available computing power. Second, the synthetic benchmark combined both class imbalance and increased logical complexity, and it would be interesting to study the effect of both  of those factors on model performance in isolation. Third, examination of loss curves showed that the variance in MultiGRAFF model performance is partially due to exploding or vanishing gradients on a small fraction of models. This issue could be addressed, for instance, through more principled parameter initialization schemes.
 
 While some practical issues remain, MultiGRAFF provides a model architecture that can match state-of-the-art GNNs on complex tasks, that also consists of components which lend itself to principled, formal analysis.
